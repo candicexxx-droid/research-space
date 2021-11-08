@@ -1,17 +1,14 @@
+//import require models
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+//the class Post is an object representing a single post
+//on the page in the post displaying area
+class Post extends React.Component {
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+}
+
+//this class is a area that is for displaying all posts
+class Post_Holder extends React.Component {
+
+}
