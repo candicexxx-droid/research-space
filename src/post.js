@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './post.css'
 
-class Postform extends React.Component {
+class PostForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -76,7 +76,4 @@ class Postform extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <Postform />,
-  document.getElementById('root')
-);
+export default PostForm;
