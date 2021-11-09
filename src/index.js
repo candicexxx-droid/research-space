@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import Post from './post'
+import PostForm from './post'
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <post />
+    <PostForm />
   </React.StrictMode>,
   document.getElementById('root')
 );
