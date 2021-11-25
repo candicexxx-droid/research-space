@@ -7,6 +7,13 @@ import './App.css';
 import App from './App';
 //the class Post is an object representing a single post
 //on the page in the post displaying area
+let testtitles = Array(5).fill('test');
+let testcontent = Array(5).fill('test');
+
+
+
+
+
 class Post extends React.Component {
     //how to render a single post
     render(){
@@ -27,9 +34,10 @@ class PostHolder extends React.Component {
     //construstor for the holder, the posts state is intend to store all posts in the database
     constructor (props){
         super(props);
+        //test multiple posts
         this.state = {
-            titles:['Testing Title!'],
-            contents:['Testing content']
+            titles:testtitles,
+            contents:testcontent
         };
     }
 
@@ -43,22 +51,28 @@ class PostHolder extends React.Component {
         //console.log(this.state.titles[0])
 
         const post = this.state.titles.map((title,index) => (
-            <div className="post_lists" key={index}>
+           
                 <Post
                     title={title} 
                     content={this.state.contents[index]}
                 />
-            </div>));
+          ));
 
         return (
             <>
-
+            
+            <App />
+            
+            
             <div class="search-box">
                 <button class="btn-search"><i >?</i></button>
                 <input type="text" class="input-search" placeholder="Type to Search..."/>
             </div>
 
+            <div className='post_lists'>
             {post}
+            </div>
+            
             </>
         );
 
@@ -70,7 +84,7 @@ class PostHolder extends React.Component {
 
 ReactDOM.render(
     <div>
-    <App />
+    
     <PostHolder />
   </div>
     ,

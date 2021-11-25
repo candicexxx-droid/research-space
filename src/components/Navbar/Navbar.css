@@ -57,9 +57,11 @@
     display: none; /*get rid of the hamburger*/
 }
 
+
+
 @media screen and (max-width: 960px) {
     .NavbarItems{
-        position: relative;
+        position: relative;/*not working rn*/
     }
 
     .nav-menu {
