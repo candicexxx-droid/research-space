@@ -2,6 +2,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import Navbar from './components/Navbar/Navbar';
+import './App.css';
+import App from './App';
 //the class Post is an object representing a single post
 //on the page in the post displaying area
 class Post extends React.Component {
@@ -49,6 +52,7 @@ class PostHolder extends React.Component {
 
         return (
             <>
+
             <div class="search-box">
                 <button class="btn-search"><i >?</i></button>
                 <input type="text" class="input-search" placeholder="Type to Search..."/>
@@ -65,6 +69,10 @@ class PostHolder extends React.Component {
 
 
 ReactDOM.render(
-    <PostHolder />,
+    <div>
+    <App />
+    <PostHolder />
+  </div>
+    ,
     document.getElementById('root')
   );
