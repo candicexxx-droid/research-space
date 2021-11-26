@@ -2,17 +2,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Navbar from './components/Navbar/Navbar';
-import './App.css';
-import App from './App';
+// import Navbar from './components/Navbar/Navbar';
+// import './App.css';
+// import App from './App';
 //the class Post is an object representing a single post
 //on the page in the post displaying area
+
+
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  Navigation,
+  Footer,
+  Home,
+  MakePost,
+  Contact,
+} from "./components";
+
 let testtitles = Array(5).fill('test');
 let testcontent = Array(5).fill('test');
-
-
-
-
 
 class Post extends React.Component {
     //how to render a single post
@@ -61,8 +68,7 @@ class PostHolder extends React.Component {
         return (
             <>
             
-            <App />
-            
+
             
             <div class="search-box">
                 <button class="btn-search"><i >?</i></button>
@@ -84,8 +90,20 @@ class PostHolder extends React.Component {
 
 ReactDOM.render(
     <div>
+        <div className="rounter">
+            <Router>
+    <Navigation />
+    <Routes>
+      <Route path="/" element={<PostHolder />} />
+      <Route path="/MakePost" element={<MakePost />} />
+      <Route path="/contact" element={<Contact />} />
+    </Routes>
+    <Footer />
+  </Router>
+  </div>
     
-    <PostHolder />
+  
+    
   </div>
     ,
     document.getElementById('root')
