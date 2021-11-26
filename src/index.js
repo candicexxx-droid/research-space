@@ -20,9 +20,9 @@ class Post extends React.Component {
 
         return (
             <div className="post">
-                <h3>{this.props.times}</h3>
-                <h1>{this.props.title}</h1>
-                <p>{this.props.content}</p>
+                <h3 className='postDate'>{this.props.times}</h3>
+                <h1 className='postTitle'>{this.props.title}</h1>
+                <p className='postContent'>{this.props.content}</p>
             </div>
         );
     }
@@ -72,7 +72,7 @@ class PostHolder extends React.Component {
                 <Post
                     title={title} 
                     content={this.state.contents[index]}
-                    time={this.state.times[index]}
+                    times={this.state.times[index]}
                 />));
 
         return (
