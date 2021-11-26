@@ -3,10 +3,10 @@ body {
     background: #1488cc;
     background: -webkit-linear-gradient(to right, #2b32b2, #1488cc);
     background: linear-gradient(to right,#2b32b2,#1488cc);
-    margin: 0px;
+    margin: 0;
     padding: 0px;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,8 +26,9 @@ body {
     width: fit-content;
     height: fit-content;
     position: relative;
-    top: 10%;
+    margin-top: 30px;
     margin-left: 40%;
+    padding-bottom: 30px;
     
 }
 .input-search{
@@ -58,7 +59,7 @@ body {
     font-weight: bold;
     outline: none;
     cursor: pointer;
-    border-radius: 50%;
+    border-radius: 40%;
     position: absolute;
     right: 0px;
     color:#ffffff ;
@@ -92,13 +93,18 @@ p {
     color: #333;
 }
 
-.post_lists {
+.post_lists{
+    margin-top: 20%;
+}
+
+.post{
     position: relative;
+    width: 50%;
     padding: 6rem 3rem 6rem 6rem;
     background: #fff;
     max-width: 800px;
     border-radius: 10px;
-    top: 50%;
+    margin-top: 20px;
     left: 50%;
     transform: translate(-50%, -50%);
     box-shadow: 1px 1px 2rem rgba(0, 0, 0, 0.3);
