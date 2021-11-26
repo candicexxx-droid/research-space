@@ -18,8 +18,8 @@ import {
   Contact,
 } from "./components";
 
-let testtitles = Array(5).fill('test');
-let testcontent = Array(5).fill('test');
+let testtitles = Array(10).fill('test');
+let testcontent = Array(10).fill('test');
 
 class Post extends React.Component {
     //how to render a single post
@@ -28,9 +28,9 @@ class Post extends React.Component {
 
         return (
             <div className="post">
-                <h3>11 October 2021</h3>
-                <h1>{this.props.title}</h1>
-                <p>{this.props.content}</p>
+                <h3 className='postDate'>11 October 2021</h3>
+                <h1 className='postTitle'>{this.props.title}</h1>
+                <p className='postContent'>{this.props.content}</p>
             </div>
         );
     }
