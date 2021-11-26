@@ -10,25 +10,12 @@ import {
   MakePost,
   Profile,
 } from "./components";
+import Post from './components/home'
 let databaseurl = 'http://www.zyoung.tech/drivers/get-json.php?action=post';
 
 
 
-class Post extends React.Component {
-    //how to render a single post
-    render(){
-        //each post is a div with a title and subject
 
-        return (
-            <div className="post">
-
-                <h3 className='postDate'>{this.props.times}</h3>
-                <h1 className='postTitle'>{this.props.title}</h1>
-                <p className='postContent'>{this.props.content}</p>
-            </div>
-        );
-    }
-}
 
 //this class is a area that is for displaying all posts
 class PostHolder extends React.Component {

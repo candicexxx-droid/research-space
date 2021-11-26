@@ -4,6 +4,8 @@ import SplitPane from "react-split-pane";
 
 import "./profile.css";
 
+let databaseurl = 'http://www.zyoung.tech/drivers/get-json.php?action=login&uname=test';
+
 class ProfilePage extends React.Component {
   constructor(props) {
     super(props);
@@ -15,7 +17,7 @@ class ProfilePage extends React.Component {
     return(
       <div>
       <h1>Profile Page</h1>
-      <SplitPane className="list" defaultSize={250}>
+      <SplitPane className="list" defaultSize={500} primary="first">
       <YourPosts />
       <SavedPosts />
     </SplitPane>
