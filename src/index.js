@@ -2,13 +2,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import Navbar from './components/Navbar/Navbar';
-// import './App.css';
-// import App from './App';
-//the class Post is an object representing a single post
-//on the page in the post displaying area
-
-
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import {
   Navigation,
@@ -17,9 +10,7 @@ import {
   MakePost,
   Contact,
 } from "./components";
-
-let testtitles = Array(5).fill('test');
-let testcontent = Array(5).fill('test');
+let databaseurl = 'http://www.zyoung.tech/drivers/get-json.php?action=post';
 
 class Post extends React.Component {
     //how to render a single post
@@ -28,7 +19,7 @@ class Post extends React.Component {
 
         return (
             <div className="post">
-                <h3>11 October 2021</h3>
+                <h3>{this.props.times}</h3>
                 <h1>{this.props.title}</h1>
                 <p>{this.props.content}</p>
             </div>
@@ -43,8 +34,9 @@ class PostHolder extends React.Component {
         super(props);
         //test multiple posts
         this.state = {
-            titles:testtitles,
-            contents:testcontent
+            titles:[],
+            contents:[],
+            times:[]
         };
     }
 
@@ -52,33 +44,47 @@ class PostHolder extends React.Component {
     //this function should get all posts from the back end and
     //insert the titile into the titles state same for content of the post
     //need to be called after sometime to dynamic update the new posts
+    getSQLdata() {
+        fetch(databaseurl)
+            .then(response => response.json())
+            .then((jsonData) => {
+            // jsonData is parsed json object received from url
+            let titles = [];
+            let contents = [];
+            let times = [];
+            for(let i = jsonData.data.length- 1; i >= 0; i--){
+                titles.push(jsonData.data[i].Tittle);
+                contents.push(jsonData.data[i].content);
+                times.push(jsonData.data[i].reading_time);
+            }
+            this.setState({
+                titles: titles,
+                contents:contents,
+                times: times
+            });
+        });
+    }
 
     render(){
-        //this.Get_Posts();
-        //console.log(this.state.titles[0])
-
+        this.getSQLdata();
         const post = this.state.titles.map((title,index) => (
            
                 <Post
                     title={title} 
                     content={this.state.contents[index]}
+                    times={this.state.times[index]}
                 />
           ));
 
         return (
             <>
-            
-
-            
-            <div class="search-box">
-                <button class="btn-search"><i >?</i></button>
-                <input type="text" class="input-search" placeholder="Type to Search..."/>
+            <div className="search-box">
+                <button className="btn-search"><i >?</i></button>
+                <input type="text" className="input-search" placeholder="Type to Search..."/>
             </div>
-
-            <div className='post_lists'>
-            {post}
+            <div className="post_lists">
+                {post}
             </div>
-            
             </>
         );
 
