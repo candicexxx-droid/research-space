@@ -12,6 +12,7 @@ import {
 } from "./components";
 let databaseurl = 'http://www.zyoung.tech/drivers/get-json.php?action=post';
 
+
 class Post extends React.Component {
     //how to render a single post
     render(){
@@ -60,7 +61,7 @@ class PostHolder extends React.Component {
             this.setState({
                 titles: titles,
                 contents:contents,
-                times: times
+                times:times
             });
         });
     }
@@ -68,13 +69,11 @@ class PostHolder extends React.Component {
     render(){
         this.getSQLdata();
         const post = this.state.titles.map((title,index) => (
-           
                 <Post
                     title={title} 
                     content={this.state.contents[index]}
-                    times={this.state.times[index]}
-                />
-          ));
+                    time={this.state.times[index]}
+                />));
 
         return (
             <>

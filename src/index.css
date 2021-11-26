@@ -26,11 +26,7 @@ body {
     width: fit-content;
     height: fit-content;
     position: relative;
-<<<<<<< HEAD
-    top: 20%;
-=======
     margin-top: 30px;
->>>>>>> 99696310 (update css)
     margin-left: 40%;
     padding-bottom: 30px;
     
@@ -97,10 +93,7 @@ p {
     color: #333;
 }
 
-<<<<<<< HEAD
-.post_lists {
-    position: absolute;
-=======
+
 .post_lists{
     margin-top: 20%;
 }
@@ -108,27 +101,13 @@ p {
 .post{
     position: relative;
     width: 50%;
->>>>>>> 99696310 (update css)
     padding: 6rem 3rem 6rem 6rem;
     background: #fff;
     max-width: 800px;
     border-radius: 10px;
-<<<<<<< HEAD
-    top: 100%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 1px 1px 2rem rgba(0, 0, 0, 0.3);
-    overflow-y:auto
-  }
-
-div {
-
-    display: block;
-}
-=======
     margin-top: 10px;
     left: 50%;
     transform: translate(-50%, -50%);
     box-shadow: 1px 1px 2rem rgba(0, 0, 0, 0.3);
   }
->>>>>>> 99696310 (update css)
+
