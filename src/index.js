@@ -15,7 +15,7 @@ import {
   Footer,
   Home,
   MakePost,
-  Contact,
+  Profile,
 } from "./components";
 
 let testtitles = Array(10).fill('test');
@@ -94,9 +94,10 @@ ReactDOM.render(
             <Router>
     <Navigation />
     <Routes>
-      <Route path="/" element={<PostHolder />} />
+        {/*home*/}
+      <Route path="/" element={<PostHolder />} /> 
       <Route path="/MakePost" element={<MakePost />} />
-      <Route path="/contact" element={<Contact />} />
+      <Route path="/profile" element={<Profile />} />
     </Routes>
     {/* <Footer /> */}
   </Router>

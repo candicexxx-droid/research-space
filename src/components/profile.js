@@ -51,5 +51,13 @@ class SavedPosts extends React.Component{
     );
   }
 }
+function Profile (){
+  return (
+    <div>
+      <ProfilePage />
+    </div>
 
-export default ProfilePage;
+  )
+}
+
+export default Profile;
