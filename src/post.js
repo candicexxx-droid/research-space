@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import './post.css'
 
 class PostForm extends React.Component {
@@ -32,13 +31,13 @@ class PostForm extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="write">
         <h1>Create Post</h1>
-        <form onSubmit={this.handleSubmit}>
-        <div className="inputs">
+        <form onSubmit={this.handleSubmit} className="writeForm">
+        <div className="writeSelection">
             <label>
               Department:
-              <select name="department" onChange={this.handleInputChange}>
+              <select className="selectionBox" name="department" onChange={this.handleInputChange}>
                 <option value="Engineering">Engineering</option>
                 <option value="Physical Science">Physical Science</option>
                 <option value="Life Science and Medical School">Life Science and Medical School</option>
@@ -46,30 +45,35 @@ class PostForm extends React.Component {
               </select>
             </label>
           </div>
-          <br />
-          <div className="inputs">
-            <label>
-              Title:
-              <input
-                name="title"
-                type="text"
-                onChange={this.handleInputChange} />
-            </label>
+          <div className="writeFormGroup">
+          <input
+            className="writeInput"
+            placeholder="Title"
+            type="text"
+            name="title"
+            value={this.state.title}
+            autoFocus={true}
+            onChange={this.handleInputChange}
+          />
           </div>
-          <br />
-          <div className="inputs">
-            <label>
-              Content:
-              <textarea value={this.state.content} 
-              name="content" 
-              onChange={this.handleInputChange} />
-            </label>
-          </div>
-          <br />
+          <div className="writeFormGroup">
+            <textarea
+              className="writeInput writeText"
+              placeholder="Research Information..."
+              type="text"
+              name="content"
+              value={this.state.content} 
+              onChange={this.handleInputChange}
+              autoFocus={true}
+            />
+        </div>
+        <div className="writeFormGroup">
           <input type="file"name="attachments" className="inputs" />
-          <br />
-          <input type="submit" value="Submit" className="inputs" />
-          <input type="button" value="Cancel" className="inputs" />
+          <button className="writeSubmit" type="submit">
+          Publish
+          </button>
+          <button className="writeSubmit" value="Cancel">Cancel</button>
+          </div>
         </form>
       </div>
     );
