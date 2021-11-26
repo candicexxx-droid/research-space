@@ -98,7 +98,7 @@ ReactDOM.render(
       <Route path="/MakePost" element={<MakePost />} />
       <Route path="/contact" element={<Contact />} />
     </Routes>
-    <Footer />
+    {/* <Footer /> */}
   </Router>
   </div>
     
