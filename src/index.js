@@ -77,6 +77,7 @@ class PostHolder extends React.Component {
                     title={title} 
                     content={this.state.contents[index]}
                     times={this.state.times[index]}
+                    key={index}
                 />));
 
         return (
