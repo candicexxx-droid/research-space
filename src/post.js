@@ -1,13 +1,15 @@
-import React from 'react'
+import React from "react";
 import './post.css'
 
 class PostForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: "",
-      department: "Engineering",
+      Tittle: "",
+    //   department: "Engineering",
       content: "",
+      author: "eggert",
+      api_key: "eggertisgod",
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -25,8 +27,19 @@ class PostForm extends React.Component {
   }
 
   handleSubmit(event) {
-    console.log("department:"+this.state.department+"\ntitle:"+this.state.title+"\ncontent:"+this.state.content);
     event.preventDefault();
+    let url = "http://www.zyoung.tech/drivers/post.php";
+    fetch(url,{
+        method:'POST',
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        },
+        body:JSON.stringify(this.state)
+    }).then((result)=>{
+        result.json().then((res)=>{
+            console.warn('res',res)
+        })
+    })
   }
 
   render() {
