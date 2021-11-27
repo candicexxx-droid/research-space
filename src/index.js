@@ -9,6 +9,7 @@ import {
   Home,
   MakePost,
   Profile,
+  LikeButton,
 } from "./components";
 
 let databaseurl = 'http://www.zyoung.tech/drivers/get-json.php?action=post';
@@ -21,14 +22,18 @@ function Post(props){
       setActive(!isActive);
     };
 
-
     //each post is a div with a title and subject
     return (
-        <div className="post" onClick={handleToggle}>
+        <>
+        <div className="post">
             <h3 className='postDate'>{props.times}</h3>
-            <h1 className='postTitle'>{props.title}</h1>
+            <h1 className='postTitle'  onClick={handleToggle}>{props.title}</h1>
             <p className='postContent'>{isActive ? "": props.content}</p>
+            <LikeButton />
         </div>
+        
+        </>
+        
     );
 
 }

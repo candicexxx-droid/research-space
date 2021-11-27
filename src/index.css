@@ -125,3 +125,8 @@ body {
     transform: translate(-50%, -50%);
     box-shadow: 1px 1px 2rem rgba(0, 0, 0, 0.3);
   }
+
+  .likediv{
+    height: 150px; 
+    width: 150px;
+  }
