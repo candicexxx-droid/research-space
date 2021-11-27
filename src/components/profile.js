@@ -64,12 +64,12 @@ class UserPostHolder extends React.Component {
   }
 
   render(){
-      // this.getSQLdata(); //fetch data from backend 
-      this.state = {
-        titles:testtitles,
-        contents:testcontent,
-        times:testdate
-    };
+      this.getSQLdata(); //fetch data from backend 
+    //   this.state = {
+    //     titles:testtitles,
+    //     contents:testcontent,
+    //     times:testdate
+    // };
       const post = this.state.titles.map((title,index) => (
               <UserPost
                   title={title} 
