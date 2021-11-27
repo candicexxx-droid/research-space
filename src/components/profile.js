@@ -6,6 +6,9 @@ import "./profile.css";
 
 let databaseurl = 'http://www.zyoung.tech/drivers/get-json.php?action=login&uname=test&passwd=test';
 
+let testtitles = Array(10).fill('test');
+let testcontent = Array(10).fill('test\ntesttesttest hi\neggert is dumb hihihihih');
+let testdate = Array(10).fill('2021-11-25 05:16:08');
 
 class UserPost extends React.Component {
   //how to render a single post
@@ -61,7 +64,12 @@ class UserPostHolder extends React.Component {
   }
 
   render(){
-      this.getSQLdata();
+      // this.getSQLdata(); //fetch data from backend 
+      this.state = {
+        titles:testtitles,
+        contents:testcontent,
+        times:testdate
+    };
       const post = this.state.titles.map((title,index) => (
               <UserPost
                   title={title} 
@@ -94,18 +102,21 @@ class ProfilePage extends React.Component {
     return(
       <div >
       <h1>Profile Page</h1>
-      <SplitPane className="list" defaultSize={500} primary="first">
-      {/* <div id="row1"> */}
+      <div className='containAll'>
+      {/* <SplitPane className="list" defaultSize={500} primary="first"> */}
+      <div id="row1">
       <YourPosts />
         
         <SavedPosts />
 
-      {/* </div> */}
+      </div>
       
      
       
       
-    </SplitPane>
+    {/* </SplitPane> */}
+      </div>
+      
     </div>
     );
   }
