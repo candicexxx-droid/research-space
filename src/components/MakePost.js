@@ -33,12 +33,22 @@ class PostForm extends React.Component {
     var params = new URLSearchParams();
     params.append('Tittle',this.state.Tittle);
     params.append('content',this.state.content);
+    params.append('author', 'gloria')
     params.append('api_key','eggertisgod');
     axios({
       method:'post',
       url:'http://www.zyoung.tech/drivers/post.php',
       data:params
     })
+    .then(result => {
+      this.setState({
+          dataSent: 1,
+      })
+      console.log(this.state)
+    })
+    .catch(error => this.setState({
+      error: error.message
+    }));
   }
 
   render() {
@@ -78,13 +88,18 @@ class PostForm extends React.Component {
               onChange={this.handleInputChange}
               autoFocus={true}
             />
-        </div>
-        <div className="writeFormGroup">
-          <input type="file"name="attachments" className="inputs" />
-          <button className="writeSubmit" type="submit">
-          Publish
-          </button>
-          <button className="writeSubmit" value="Cancel">Cancel</button>
+          </div>
+          <div className="writeFormGroup">
+            <input type="file"name="attachments" className="inputs" />
+            <button className="writeSubmit" type="submit">
+            Publish
+            </button>
+            <button className="writeSubmit" value="Cancel">Cancel</button>
+          </div>
+          <div className="writeFormGroup">
+            {this.state.dataSent &&
+              <div className="postBanner">Submit Post Successfully！ Thank you for posting opportunities.</div>
+            }
           </div>
         </form>
       </div>
