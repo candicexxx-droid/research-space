@@ -8,7 +8,7 @@ class PostForm extends React.Component {
     super(props);
     this.state = {
       Tittle: "",
-    //   department: "Engineering",
+      department: "Engineering",
       content: "",
       author: "eggert",
       api_key: "eggertisgod",
@@ -30,19 +30,27 @@ class PostForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-
-  }
-
-  render() {
     var params = new URLSearchParams();
-    params.append('Tittle','posttest');
-    params.append('content','contenttest');
+    params.append('Tittle',this.state.Tittle);
+    params.append('content',this.state.content);
     params.append('api_key','eggertisgod');
     axios({
       method:'post',
       url:'http://www.zyoung.tech/drivers/post.php',
       data:params
     })
+  }
+
+  render() {
+    // var params = new URLSearchParams();
+    // params.append('Tittle','posttest');
+    // params.append('content','contenttest');
+    // params.append('api_key','eggertisgod');
+    // axios({
+    //   method:'post',
+    //   url:'http://www.zyoung.tech/drivers/post.php',
+    //   data:params
+    // })
     return (
       <div className="write">
         <h1>Create Post</h1>
@@ -63,8 +71,8 @@ class PostForm extends React.Component {
             className="writeInput"
             placeholder="Title"
             type="text"
-            name="title"
-            value={this.state.title}
+            name="Tittle"
+            value={this.state.Tittle}
             autoFocus={true}
             onChange={this.handleInputChange}
           />
