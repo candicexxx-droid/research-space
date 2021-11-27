@@ -1,7 +1,7 @@
 import * as React from "react";
 import { render } from "react-dom";
 import SplitPane from "react-split-pane";
-import Post from './home'
+// import Post from './home'
 import "./profile.css";
 
 let databaseurl = 'http://www.zyoung.tech/drivers/get-json.php?action=login&uname=test&passwd=test';
