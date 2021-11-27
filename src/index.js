@@ -20,13 +20,15 @@ class Post extends React.Component {
 
         return (
             <div className="post">
-                <h3 className='postDate'>11 October 2021</h3>
+
+                <h3 className='postDate'>{this.props.times}</h3>
                 <h1 className='postTitle'>{this.props.title}</h1>
                 <p className='postContent'>{this.props.content}</p>
             </div>
         );
     }
 }
+
 
 
 
