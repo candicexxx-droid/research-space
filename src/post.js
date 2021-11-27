@@ -27,7 +27,7 @@ class PostForm extends React.Component {
   }
 
   handleSubmit(event) {
-    // event.preventDefault();
+    event.preventDefault();
     let url = "http://www.zyoung.tech/drivers/post.php";
     fetch(url,{
         method:'POST',
