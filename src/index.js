@@ -1,5 +1,5 @@
 //import require models
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -13,20 +13,24 @@ import {
 
 let databaseurl = 'http://www.zyoung.tech/drivers/get-json.php?action=post';
 
-class Post extends React.Component {
-    //how to render a single post
-    render(){
-        //each post is a div with a title and subject
+function Post(props){
 
-        return (
-            <div className="post">
+    const [isActive, setActive] = useState("false");
 
-                <h3 className='postDate'>{this.props.times}</h3>
-                <h1 className='postTitle'>{this.props.title}</h1>
-                <p className='postContent'>{this.props.content}</p>
-            </div>
-        );
-    }
+    const handleToggle = () => {
+      setActive(!isActive);
+    };
+
+
+    //each post is a div with a title and subject
+    return (
+        <div className="post" onClick={handleToggle}>
+            <h3 className='postDate'>{props.times}</h3>
+            <h1 className='postTitle'>{props.title}</h1>
+            <p className='postContent'>{isActive ? "": props.content}</p>
+        </div>
+    );
+
 }
 
 
@@ -50,6 +54,7 @@ class PostHolder extends React.Component {
     //insert the titile into the titles state same for content of the post
     //need to be called after sometime to dynamic update the new posts
     getSQLdata() {
+        //use fetch to keep updating the state
         fetch(databaseurl)
             .then(response => response.json())
             .then((jsonData) => {
@@ -65,10 +70,13 @@ class PostHolder extends React.Component {
             this.setState({
                 titles: titles,
                 contents:contents,
-                times:times
+                times:times,
             });
         });
     }
+
+
+
 
     render(){
         this.getSQLdata();

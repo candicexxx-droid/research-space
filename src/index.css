@@ -91,8 +91,10 @@ body {
 .postContent {
     margin: 0 0 4.5rem 0;
     font-size: 1.5rem;
+    overflow-wrap: break-word;
     color: #333;
 }
+
 .postDate{
     display: block;
     font-size: 1.17em;
@@ -105,18 +107,20 @@ body {
 }
 
 .post_lists{
-    margin-top: 25%;
+    margin-top: 20%;
+    
 }
 
 .post{
     text-align: left;
     position: relative;
+    clear:both;
     width: 50%;
-    padding: 6rem 3rem 6rem 6rem;
+    padding: 3rem 3rem 6rem 6rem;
     background: #fff;
     max-width: 800px;
     border-radius: 10px;
-    margin-top: 20px;
+    margin-top: 1%;
     left: 50%;
     transform: translate(-50%, -50%);
     box-shadow: 1px 1px 2rem rgba(0, 0, 0, 0.3);
