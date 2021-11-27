@@ -1,12 +1,14 @@
 import React from "react";
+import axios from 'axios';
 import './post.css'
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 class PostForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       Tittle: "",
-    //   department: "Engineering",
+      department: "Engineering",
       content: "",
       author: "eggert",
       api_key: "eggertisgod",
@@ -28,17 +30,14 @@ class PostForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    let url = "http://www.zyoung.tech/drivers/post.php";
-    fetch(url,{
-        method:'POST',
-        headers: {
-            "Content-type": "application/json; charset=UTF-8"
-        },
-        body:JSON.stringify(this.state)
-    }).then((result)=>{
-        result.json().then((res)=>{
-            console.warn('res',res)
-        })
+    var params = new URLSearchParams();
+    params.append('Tittle',this.state.Tittle);
+    params.append('content',this.state.content);
+    params.append('api_key','eggertisgod');
+    axios({
+      method:'post',
+      url:'http://www.zyoung.tech/drivers/post.php',
+      data:params
     })
   }
 
@@ -63,8 +62,8 @@ class PostForm extends React.Component {
             className="writeInput"
             placeholder="Title"
             type="text"
-            name="title"
-            value={this.state.title}
+            name="Tittle"
+            value={this.state.Tittle}
             autoFocus={true}
             onChange={this.handleInputChange}
           />
@@ -93,11 +92,4 @@ class PostForm extends React.Component {
   }
 }
 
-
-function MakePost() {
-  return (
-    <PostForm />
-  );
-}
-
-export default MakePost;
+export default PostForm;
