@@ -1,5 +1,7 @@
 import React from "react";
+import axios from 'axios';
 import './post.css'
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 class PostForm extends React.Component {
   constructor(props) {
@@ -28,21 +30,19 @@ class PostForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    let url = "http://www.zyoung.tech/drivers/post.php";
-    fetch(url,{
-        method:'POST',
-        headers: {
-            "Content-type": "application/json; charset=UTF-8"
-        },
-        body:JSON.stringify(this.state)
-    }).then((result)=>{
-        result.json().then((res)=>{
-            console.warn('res',res)
-        })
-    })
+
   }
 
   render() {
+    var params = new URLSearchParams();
+    params.append('Tittle','posttest');
+    params.append('content','contenttest');
+    params.append('api_key','eggertisgod');
+    axios({
+      method:'post',
+      url:'http://www.zyoung.tech/drivers/post.php',
+      data:params
+    })
     return (
       <div className="write">
         <h1>Create Post</h1>
