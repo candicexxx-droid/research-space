@@ -1,6 +1,7 @@
 import React from "react";
 import axios from 'axios';
 import './post.css'
+import Alert from 'react-bootstrap/Alert';
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 class PostForm extends React.Component {
@@ -33,7 +34,7 @@ class PostForm extends React.Component {
     var params = new URLSearchParams();
     params.append('Tittle',this.state.Tittle);
     params.append('content',this.state.content);
-    params.append('author', 'gloria')
+    params.append('author', 'gloria');
     params.append('api_key','eggertisgod');
     axios({
       method:'post',
@@ -44,7 +45,6 @@ class PostForm extends React.Component {
       this.setState({
           dataSent: 1,
       })
-      console.log(this.state)
     })
     .catch(error => this.setState({
       error: error.message
@@ -96,9 +96,16 @@ class PostForm extends React.Component {
             </button>
             <button className="writeSubmit" value="Cancel">Cancel</button>
           </div>
-          <div className="writeFormGroup">
+          <div>
             {this.state.dataSent &&
-              <div className="postBanner">Submit Post Successfully！ Thank you for posting opportunities.</div>
+              <div className="postBanner">
+                <Alert variant="success">
+                <Alert.Heading><b>Post Submitted</b></Alert.Heading>
+                <p>
+                  Thank you for posting research opportunities on Research Space!
+                </p>
+                </Alert>
+              </div>
             }
           </div>
         </form>
