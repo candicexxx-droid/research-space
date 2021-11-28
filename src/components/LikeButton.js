@@ -14,7 +14,7 @@ function LikeButton() {
         >
             <div className="like-button">
                 <span>Save</span>
-                <sapn className={cn("suffix", { liked })}>d</sapn>
+                <span className={cn("suffix", { liked })}>d</span>
             </div>
         </button>
     );
