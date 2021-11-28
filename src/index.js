@@ -67,7 +67,7 @@ class PostHolder extends React.Component {
             let titles = [];
             let contents = [];
             let times = [];
-            for(let i = jsonData.data.length- 1; i >= 0; i--){
+            for(let i = 0; i < jsonData.data.length; i++){
                 titles.push(jsonData.data[i].Tittle);
                 contents.push(jsonData.data[i].content);
                 times.push(jsonData.data[i].reading_time);
