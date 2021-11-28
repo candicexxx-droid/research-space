@@ -1,12 +1,15 @@
 import React from "react";
+import axios from 'axios';
 import './post.css'
+import Alert from 'react-bootstrap/Alert';
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 class PostForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       Tittle: "",
-    //   department: "Engineering",
+      department: "Engineering",
       content: "",
       author: "eggert",
       api_key: "eggertisgod",
@@ -28,18 +31,24 @@ class PostForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    let url = "http://www.zyoung.tech/drivers/post.php";
-    fetch(url,{
-        method:'POST',
-        headers: {
-            "Content-type": "application/json; charset=UTF-8"
-        },
-        body:JSON.stringify(this.state)
-    }).then((result)=>{
-        result.json().then((res)=>{
-            console.warn('res',res)
-        })
+    var params = new URLSearchParams();
+    params.append('Tittle',this.state.Tittle);
+    params.append('content',this.state.content);
+    params.append('author', 'gloria');
+    params.append('api_key','eggertisgod');
+    axios({
+      method:'post',
+      url:'http://www.zyoung.tech/drivers/post.php',
+      data:params
     })
+    .then(result => {
+      this.setState({
+          dataSent: 1,
+      })
+    })
+    .catch(error => this.setState({
+      error: error.message
+    }));
   }
 
   render() {
@@ -63,8 +72,8 @@ class PostForm extends React.Component {
             className="writeInput"
             placeholder="Title"
             type="text"
-            name="title"
-            value={this.state.title}
+            name="Tittle"
+            value={this.state.Tittle}
             autoFocus={true}
             onChange={this.handleInputChange}
           />
@@ -79,13 +88,25 @@ class PostForm extends React.Component {
               onChange={this.handleInputChange}
               autoFocus={true}
             />
-        </div>
-        <div className="writeFormGroup">
-          <input type="file"name="attachments" className="inputs" />
-          <button className="writeSubmit" type="submit">
-          Publish
-          </button>
-          <button className="writeSubmit" value="Cancel">Cancel</button>
+          </div>
+          <div className="writeFormGroup">
+            <input type="file"name="attachments" className="inputs" />
+            <button className="writeSubmit" type="submit">
+            Publish
+            </button>
+            <button className="writeSubmit" value="Cancel">Cancel</button>
+          </div>
+          <div>
+            {this.state.dataSent &&
+              <div className="postBanner">
+                <Alert variant="success">
+                <Alert.Heading><b>Post Submitted</b></Alert.Heading>
+                <p>
+                  Thank you for posting research opportunities on Research Space!
+                </p>
+                </Alert>
+              </div>
+            }
           </div>
         </form>
       </div>
@@ -93,11 +114,4 @@ class PostForm extends React.Component {
   }
 }
 
-
-function MakePost() {
-  return (
-    <PostForm />
-  );
-}
-
-export default MakePost;
+export default PostForm;

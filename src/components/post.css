@@ -9,7 +9,8 @@ body{
 }
 
 h1{
-text-align: center;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .write {
@@ -21,11 +22,12 @@ text-align: center;
 }
 
 .writeSelection {
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left: 15%;
+  margin-right: 15%;
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  font-size: 20px;
 }
 
 .selectionBox{
@@ -34,8 +36,8 @@ text-align: center;
 }
 
 .writeFormGroup {
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left: 15%;
+  margin-right: 15%;
   display: flex;
   align-items: center;
   margin-bottom: 20px;
@@ -80,4 +82,11 @@ text-align: center;
   cursor: pointer;
   display: flex;
   align-items: center;
+}
+
+.postBanner{
+  font-size: 25px;
+  width: 100%;
+  text-align: center;
+  /* font-family: "Apple Chancery", cursive; */
 }

@@ -68,9 +68,16 @@ body{
     margin-right:10%;
     margin-top: 5%;
 }
+#row1{
+  display:flex;
+  flex-direction:row;
+justify-content: space-around;
+}
   .userPt{
     display:flex;
     flex-direction:column;
+    width: 80%;
+    
   }
 
   .userPostTitle {
@@ -85,6 +92,7 @@ body{
     margin: 0 0 4.5rem 0;
     font-size: 1.5rem;
     color: #333;
+    white-space: pre-wrap
 }
 .userPostDate{
   text-align: left;
@@ -97,3 +105,9 @@ body{
     font-weight: bold;
     color: #333;
 }
+
+/* .containAll {
+  height:100%;
+  width:80%; 
+  overflow-y:auto;
+} */
