@@ -1,6 +1,7 @@
 import React from "react";
 import axios from 'axios';
-import './post.css'
+import './post.css';
+import Session from "react-session-api";
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 class PostForm extends React.Component {
@@ -43,6 +44,12 @@ class PostForm extends React.Component {
       let value1 = jsonData.data[0].value1;
       let value2 = jsonData.data[0].value2;
       let reading_time = jsonData.data[0].reading_time;
+      Session.set("username", jsonData.data[0].username);
+      Session.set("password", jsonData.data[0].password);
+      Session.set("value1", jsonData.data[0].value1);
+      Session.set("value2", jsonData.data[0].value2);
+      Session.set("reading_time", jsonData.data[0].reading_time);
+      console.log(Session.onSet(username));
       this.setState({
         username: username,
         password:password,
