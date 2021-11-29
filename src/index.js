@@ -17,7 +17,7 @@ import {
 let databaseurl = 'http://www.zyoung.tech/drivers/get-json.php?action=post';
 
 //Read Session
-console.log(Session.get('username'));
+console.log("The username is: " + Session.get('username'));
 
 function Post(props){
 
