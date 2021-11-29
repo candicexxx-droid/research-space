@@ -55,10 +55,16 @@ class PostHolder extends React.Component {
         this.state = {
             titles:[],
             contents:[],
-            times:[]
+            times:[],
+            searchInput: ""
         };
+
+        this.handleSearch = this.handleSearch.bind(this);
     }
 
+    handleSearch(event) {
+        this.setState({searchInput: event.target.value});
+    }
 
     //this function should get all posts from the back end and
     //insert the titile into the titles state same for content of the post
@@ -72,10 +78,22 @@ class PostHolder extends React.Component {
             let titles = [];
             let contents = [];
             let times = [];
-            for(let i = 0; i < jsonData.data.length; i++){
-                titles.push(jsonData.data[i].Tittle);
-                contents.push(jsonData.data[i].content);
-                times.push(jsonData.data[i].reading_time);
+            if(this.state.searchInput){
+                for(let i = 0; i < jsonData.data.length; i++){
+                    if(jsonData.data[i].Tittle.includes(this.state.searchInput) || jsonData.data[i].content.includes(this.state.searchInput))
+                    {
+                        titles.push(jsonData.data[i].Tittle);
+                        contents.push(jsonData.data[i].content);
+                        times.push(jsonData.data[i].reading_time);
+                    }
+                }
+            }
+            else{
+                for(let i = 0; i < jsonData.data.length; i++){
+                    titles.push(jsonData.data[i].Tittle);
+                    contents.push(jsonData.data[i].content);
+                    times.push(jsonData.data[i].reading_time);
+                }
             }
             this.setState({
                 titles: titles,
@@ -102,7 +120,7 @@ class PostHolder extends React.Component {
             <>
             <div className="search-box">
                 <button className="btn-search"><i >?</i></button>
-                <input type="text" className="input-search" placeholder="Type to Search..."/>
+                <input type="text" className="input-search" placeholder="Type to Search..." value={this.state.searchInput} onChange={this.handleSearch}/>
             </div>
             <div className="post_lists">
                 {post}
