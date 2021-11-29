@@ -7,6 +7,7 @@ import {
   Navigation,
   Footer,
   Home,
+  Login,
   MakePost,
   Profile,
   LikeButton,
@@ -121,11 +122,12 @@ ReactDOM.render(
       <Route path="/" element={<PostHolder />} /> 
       <Route path="/MakePost" element={<MakePost />} />
       <Route path="/profile" element={<Profile />} />
+      <Route path="/Login" element={<Login />} />
     </Routes>
     {/* <Footer /> */}
   </Router>
   </div>
-    
+    ß
   
     
   </div>
