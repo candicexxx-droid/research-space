@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import Session from "react-session-api";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import {
   Navigation,
@@ -13,6 +14,9 @@ import {
 } from "./components";
 
 let databaseurl = 'http://www.zyoung.tech/drivers/get-json.php?action=post';
+
+//Read Session
+console.log(Session.get('username'));
 
 function Post(props){
 
