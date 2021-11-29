@@ -7,11 +7,8 @@ class PostForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      Tittle: "",
-      department: "Engineering",
-      content: "",
-      author: "eggert",
-      api_key: "eggertisgod",
+      username: "",
+      password: "",
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -30,22 +27,30 @@ class PostForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    var params = new URLSearchParams();
-    params.append('Tittle',this.state.Tittle);
-    params.append('content',this.state.content);
-    params.append('author', 'gloria')
-    params.append('api_key','eggertisgod');
-    axios({
-      method:'post',
-      url:'http://www.zyoung.tech/drivers/post.php',
-      data:params
+    var param = new URLSearchParams();
+    param.append('action','login');
+    param.append('uname',this.state.username);
+    param.append('passwd',this.state.password);
+
+    axios.get('http://www.zyoung.tech/drivers/get-json.php',{
+      params: param
     })
-    .then(result => {
+    .then(response => response.json())
+    .then((jsonData) => {
+      // jsonData is parsed json object received from url
+      let username = jsonData.data[0].username;
+      let password = jsonData.data[0].password;
+      let value1 = jsonData.data[0].value1;
+      let value2 = jsonData.data[0].value2;
+      let reading_time = jsonData.data[0].reading_time;
       this.setState({
-          dataSent: 1,
-      })
-      console.log(this.state)
-    })
+        username: username,
+        password:password,
+        value1: value1,
+        value2:value2,
+        reading_time:reading_time
+      });
+  })
     .catch(error => this.setState({
       error: error.message
     }));
@@ -54,26 +59,15 @@ class PostForm extends React.Component {
   render() {
     return (
       <div className="write">
-        <h1>Create Post</h1>
+        <h1>Login</h1>
         <form onSubmit={this.handleSubmit} className="writeForm">
-        <div className="writeSelection">
-            <label>
-              Department:
-              <select className="selectionBox" name="department" onChange={this.handleInputChange}>
-                <option value="Engineering">Engineering</option>
-                <option value="Physical Science">Physical Science</option>
-                <option value="Life Science and Medical School">Life Science and Medical School</option>
-                <option value="Arts and Social Science">Arts and Social Science</option>
-              </select>
-            </label>
-          </div>
           <div className="writeFormGroup">
           <input
             className="writeInput"
-            placeholder="Title"
+            placeholder="username"
             type="text"
-            name="Tittle"
-            value={this.state.Tittle}
+            name="username"
+            value={this.state.username}
             autoFocus={true}
             onChange={this.handleInputChange}
           />
@@ -81,18 +75,17 @@ class PostForm extends React.Component {
           <div className="writeFormGroup">
             <textarea
               className="writeInput writeText"
-              placeholder="Research Information..."
+              placeholder=""
               type="text"
-              name="content"
-              value={this.state.content} 
+              name="password"
+              value={this.state.password} 
               onChange={this.handleInputChange}
               autoFocus={true}
             />
           </div>
           <div className="writeFormGroup">
-            <input type="file"name="attachments" className="inputs" />
             <button className="writeSubmit" type="submit">
-            Publish
+            Login
             </button>
             <button className="writeSubmit" value="Cancel">Cancel</button>
           </div>
