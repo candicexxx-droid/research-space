@@ -2,9 +2,9 @@ import React from "react";
 import {Navbar} from "react-bootstrap";
 import {  NavLink } from "react-router-dom";
 import Session  from "react-session-api";
-Session.set("username", null)
-console.log("check username")
-console.log(Session.get("username")==null)
+// Session.set("username", null)
+// console.log("check username")
+// console.log(Session.get("username")==null)
 class Navigation extends React.Component {
   constructor (props){
     super(props);
