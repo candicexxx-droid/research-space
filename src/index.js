@@ -80,7 +80,8 @@ class PostHolder extends React.Component {
             let times = [];
             if(this.state.searchInput){
                 for(let i = 0; i < jsonData.data.length; i++){
-                    if(jsonData.data[i].Tittle.includes(this.state.searchInput) || jsonData.data[i].content.includes(this.state.searchInput))
+                    let searchString = this.state.searchInput.toLowerCase();
+                    if(jsonData.data[i].Tittle.toLowerCase().includes(searchString) || jsonData.data[i].content.toLowerCase().includes(searchString) || jsonData.data[i].author.toLowerCase().includes(searchString))
                     {
                         titles.push(jsonData.data[i].Tittle);
                         contents.push(jsonData.data[i].content);
