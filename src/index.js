@@ -16,6 +16,11 @@ import {
 
 let databaseurl = 'http://www.zyoung.tech/drivers/get-json.php?action=post';
 
+//simulating that there is a user loged in
+Session.set('username','admin');
+Session.set('passwd','admin');
+
+
 //Read Session
 console.log("The username is: " + Session.get('username'));
 
@@ -31,10 +36,10 @@ function Post(props){
     return (
         <>
         <div className="post">
-            <h3 className='postDate'>{props.times}</h3>
+            <h3 className='postDate'>{props.author +" " +  props.times}</h3>
             <h1 className='postTitle'  onClick={handleToggle}>{props.title}</h1>
             <p className='postContent'>{isActive ? "": props.content}</p>
-            <LikeButton />
+            <LikeButton id={props.id}/>
         </div>
         
         </>
@@ -56,6 +61,8 @@ class PostHolder extends React.Component {
             titles:[],
             contents:[],
             times:[],
+            IDs:[],
+            authors:[],
             searchInput: ""
         };
 
@@ -78,6 +85,8 @@ class PostHolder extends React.Component {
             let titles = [];
             let contents = [];
             let times = [];
+            let IDs = [];
+            let authors = [];
             if(this.state.searchInput){
                 for(let i = 0; i < jsonData.data.length; i++){
                     let searchString = this.state.searchInput.toLowerCase();
@@ -86,6 +95,8 @@ class PostHolder extends React.Component {
                         titles.push(jsonData.data[i].Tittle);
                         contents.push(jsonData.data[i].content);
                         times.push(jsonData.data[i].reading_time);
+                        IDs.push(jsonData.data[i].id);
+                        authors.push(jsonData.data[i].author);
                     }
                 }
             }
@@ -94,12 +105,16 @@ class PostHolder extends React.Component {
                     titles.push(jsonData.data[i].Tittle);
                     contents.push(jsonData.data[i].content);
                     times.push(jsonData.data[i].reading_time);
+                    IDs.push(jsonData.data[i].id);
+                    authors.push(jsonData.data[i].author);
                 }
             }
             this.setState({
                 titles: titles,
                 contents:contents,
                 times:times,
+                IDs:IDs,
+                authors:authors,
             });
         });
     }
@@ -114,6 +129,8 @@ class PostHolder extends React.Component {
                     title={title} 
                     content={this.state.contents[index]}
                     times={this.state.times[index]}
+                    author={this.state.authors[index]}
+                    id={this.state.IDs[index]}
                     key={index}
                 />));
 
