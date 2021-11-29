@@ -10,7 +10,7 @@ let testtitles = Array(10).fill('test');
 let testcontent = Array(10).fill('test\ntesttesttest hi\neggert is dumb hihihihih');
 let testdate = Array(10).fill('2021-11-25 05:16:08');
 
-Session.set("username", "test");
+Session.set("username", "");
 Session.set("password", "test");
 
 class UserPost extends React.Component {
