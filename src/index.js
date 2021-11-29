@@ -41,7 +41,8 @@ function Post(props){
     return (
         <>
         <div className="post">
-            <h3 className='postDate'>{props.author +" " +  props.times + " " + props.department}</h3>
+            <h3 className='postDate'>{props.author +" " +  props.times}</h3>
+            <h3 className='postDate'>{"Department: " + props.department}</h3>
             <h1 className='postTitle'  onClick={handleToggle}>{props.title}</h1>
             <p className='postContent'>{isActive ? "": props.content}</p>
             <LikeButton id={props.id}/>
