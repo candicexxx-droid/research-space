@@ -1,14 +1,17 @@
 import * as React from "react";
 import { render } from "react-dom";
-import SplitPane from "react-split-pane";
+import Session  from "react-session-api";
 // import Post from './home'
 import "./profile.css";
 
-let databaseurl = 'http://www.zyoung.tech/drivers/get-json.php?action=login&uname=test&passwd=test';
 
+let databaseurl = 'http://www.zyoung.tech/drivers/get-json.php?action=post'; //fetch all profile data 
 let testtitles = Array(10).fill('test');
 let testcontent = Array(10).fill('test\ntesttesttest hi\neggert is dumb hihihihih');
 let testdate = Array(10).fill('2021-11-25 05:16:08');
+
+Session.set("username", "test");
+Session.set("password", "test");
 
 class UserPost extends React.Component {
   //how to render a single post
@@ -42,29 +45,92 @@ class UserPostHolder extends React.Component {
   //this function should get all posts from the back end and
   //insert the titile into the titles state same for content of the post
   //need to be called after sometime to dynamic update the new posts
-  getSQLdata() {
+  getPostData() {
+      //use fetch to keep updating the state
+      let userName=Session.get("username");
       fetch(databaseurl)
-          .then(response => response.json())
-          .then((jsonData) => {
-          // jsonData is parsed json object received from url
-          let titles = [];
-          let contents = [];
-          let times = [];
-          for(let i = jsonData.data.length- 1; i >= 0; i--){
-              titles.push(jsonData.data[i].username);
-              contents.push(jsonData.data[i].password);
-              times.push(jsonData.data[i].value1);
-          }
-          this.setState({
-              titles: titles,
-              contents:contents,
-              times:times
-          });
+      .then(response => response.json())
+      .then((jsonData) => {
+      // jsonData is parsed json object received from url
+      let titles = [];
+      let contents = [];
+      let times = [];
+      for(let i = 0; i < jsonData.data.length; i++){
+        // console.log(jsonData.data[i].author)
+        if (userName===jsonData.data[i].author){
+           //fetch only the posts of user who logged in
+          titles.push(jsonData.data[i].Tittle);
+          contents.push(jsonData.data[i].content);
+          times.push(jsonData.data[i].reading_time);
+
+        }
+          
+      }
+      this.setState({
+          titles: titles,
+          contents:contents,
+          times:times,
       });
+  });
   }
 
+
+  getSavedPost() {
+
+    let userData = 'http://www.zyoung.tech/drivers/get-json.php?action=login&uname='+Session.get("username")+"&passwd="+Session.get("password");
+    let savedPostId=["1","2","3","4","5","6"]//for testing
+    // console.log(userData);
+    //fetc user saved post id from backend value1 or value2?
+    fetch(userData)
+    .then(response => response.json())
+    .then((jsonData) => {
+    // jsonData is parsed json object received from url
+    for(let i = 0; i < jsonData.data.length; i++){
+      //read savedPost ID 
+        
+    }
+
+    fetch(databaseurl)
+      .then(response => response.json())
+      .then((jsonData) => {
+      // jsonData is parsed json object received from url
+      let titles = [];
+      let contents = [];
+      let times = [];
+      for(let i = 0; i < jsonData.data.length; i++){
+
+         if (savedPostId.includes(jsonData.data[i].id)){ //if ID is included in savedPostId, then render the post 
+          
+          titles.push(jsonData.data[i].Tittle);
+          contents.push(jsonData.data[i].content);
+          times.push(jsonData.data[i].reading_time);
+
+
+         }
+          
+
+        
+          
+      }
+      this.setState({
+          titles: titles,
+          contents:contents,
+          times:times,
+      });
+  });
+
+
+    
+});
+}
+
   render(){
-      this.getSQLdata(); //fetch data from backend 
+    if (this.props.property=="userPost") {
+      this.getPostData(); 
+    } else {
+      this.getSavedPost();
+    }
+      //fetch data from backend 
     //   this.state = {
     //     titles:testtitles,
     //     contents:testcontent,
@@ -75,6 +141,7 @@ class UserPostHolder extends React.Component {
                   title={title} 
                   content={this.state.contents[index]}
                   times={this.state.times[index]}
+                  key={index}
               />));
 
       return (
@@ -133,7 +200,7 @@ class YourPosts extends React.Component{
     return(
       <div className='userPt'> 
         <h3>Your Posts</h3>
-        <UserPostHolder />
+        <UserPostHolder property="userPost"/>
       </div>
       
     );
@@ -151,7 +218,7 @@ class SavedPosts extends React.Component{
     return(
       <div className='userPt'>
         <h3>Saved Posts</h3>
-        <UserPostHolder />
+        <UserPostHolder property="savedPost"/>
       </div>
       
     );
