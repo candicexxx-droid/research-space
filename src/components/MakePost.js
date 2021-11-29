@@ -1,6 +1,7 @@
 import React from "react";
 import axios from 'axios';
 import './post.css'
+import { Link } from "react-router-dom";
 import Alert from 'react-bootstrap/Alert';
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
@@ -18,6 +19,7 @@ class PostForm extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
 
   handleInputChange(event) {
     const target = event.target;
@@ -94,7 +96,7 @@ class PostForm extends React.Component {
             <button className="writeSubmit" type="submit">
             Publish
             </button>
-            <button className="writeSubmit" value="Cancel">Cancel</button>
+            <Link className="writeSubmit" to="/">Cancel</Link>
           </div>
           <div>
             {this.state.dataSent &&
