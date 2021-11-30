@@ -33,12 +33,16 @@ class Login extends React.Component {
       fetch(url)
         .then(response => response.json())
         .then((jsonData) => {
-          this.setState({
-            unameSQL:jsonData.data[0].username,
-            passwdSQL: jsonData.data[0].password,
-            value1: jsonData.data[0].value1,
-            value2: jsonData.data[0].value2
-          });
+          if(!(jsonData.data == null)){
+            this.setState({
+              unameSQL:jsonData.data[0].username,
+              passwdSQL: jsonData.data[0].password,
+              value1: jsonData.data[0].value1,
+              value2: jsonData.data[0].value2
+            });
+          }else{
+            alert("Incorrect password or username!");
+          }
         });
     } catch (error) {
     console.log('Request Failed', error);
@@ -57,9 +61,9 @@ class Login extends React.Component {
   render(){
     this.setSession();
     
-    if(Session.get('username') == 'test2'){
-      console.log('hello');
-      window.location.replace('http://localhost:3000/');
+    if(Session.get('username') !== ''){
+      alert("Welcome!");
+      window.location.replace('http://www.zyoung.tech:3000/');
     }
     return (
       <div className="Login">
