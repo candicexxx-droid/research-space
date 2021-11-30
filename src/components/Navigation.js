@@ -2,6 +2,7 @@ import React from "react";
 import {Navbar} from "react-bootstrap";
 import {  NavLink } from "react-router-dom";
 import Session  from "react-session-api";
+import "./Navigation.css";
 // Session.set("username", null)
 // console.log("check username")
 // console.log(Session.get("username")==null)
@@ -46,7 +47,7 @@ class Navigation extends React.Component {
 
     if (Session.get("username")) {//if user logged in, show make a post and profile
       return (
-        <div>
+        <div className="dynamic-nav">
           <li className="nav-item">
                   <NavLink className="nav-link" to="/MakePost">
                     Make A Post
