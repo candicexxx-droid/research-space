@@ -78,19 +78,23 @@ class UserPostHolder extends React.Component {
   getSavedPost() {
 
     let userData = 'http://www.zyoung.tech/drivers/get-json.php?action=login&uname='+Session.get("username")+"&passwd="+Session.get("password");
-    let savedPostId=["1","2","3","4","5","6"]//for testing
+    let savedPostId="33,32,1";//for testing
     // console.log(userData);
     //fetc user saved post id from backend value1 or value2?
-    fetch(userData)
-    .then(response => response.json())
-    .then((jsonData) => {
-    // jsonData is parsed json object received from url
-    for(let i = 0; i < jsonData.data.length; i++){
-      //read savedPost ID 
-        
-    }
+  //ISSUE with fetch userData
+//     fetch(userData)
+//     .then(response => response.json())
+//     .then((jsonData) => {
+//     // jsonData is parsed json object received from url
+//     savedPostId=jsonData.data[0].value1;
+//     console.log("savedPostID")
+//     console.log(savedPostId)
+    
 
-    fetch(databaseurl)
+  
+// });
+savedPostId=savedPostId.split(",");
+fetch(databaseurl)
       .then(response => response.json())
       .then((jsonData) => {
       // jsonData is parsed json object received from url
@@ -106,11 +110,7 @@ class UserPostHolder extends React.Component {
           times.push(jsonData.data[i].reading_time);
 
 
-         }
-          
-
-        
-          
+         }         
       }
       this.setState({
           titles: titles,
@@ -118,10 +118,6 @@ class UserPostHolder extends React.Component {
           times:times,
       });
   });
-
-
-    
-});
 }
 
   render(){
@@ -130,12 +126,6 @@ class UserPostHolder extends React.Component {
     } else {
       this.getSavedPost();
     }
-      //fetch data from backend 
-    //   this.state = {
-    //     titles:testtitles,
-    //     contents:testcontent,
-    //     times:testdate
-    // };
       const post = this.state.titles.map((title,index) => (
               <UserPost
                   title={title} 
