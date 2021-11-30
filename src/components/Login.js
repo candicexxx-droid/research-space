@@ -1,45 +1,93 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Session from "react-session-api";
 import "./Login.css";
 
-export default function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-
-  function validateForm() {
-    return username.length > 0 && password.length > 0;
+class Login extends React.Component {
+  constructor (props){
+    super(props);
+    //test multiple posts
+    this.state = {
+        username:"",
+        password:"",
+        unameSQL:"",
+        passwdSQL:"",
+        value1:"",
+        Value2:""
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  function handleSubmit(event) {
+  validateForm() {
+    return this.state.username.length > 0 && this.state.password.length > 0;
+  }
+  
+
+  handleSubmit(event) {
     event.preventDefault();
-    console.log('clicked');
+    //console.log(this.state.username);
+    let url = 'http://www.zyoung.tech/drivers/get-json.php?action=login&uname=' + this.state.username + '&passwd=' + this.state.password;
+    //let url ='http://www.zyoung.tech/drivers/get-json.php?action=login&uname=test2&passwd=test2';
+    try{
+      fetch(url)
+        .then(response => response.json())
+        .then((jsonData) => {
+          this.setState({
+            unameSQL:jsonData.data[0].username,
+            passwdSQL: jsonData.data[0].password,
+            value1: jsonData.data[0].value1,
+            value2: jsonData.data[0].value2
+          });
+        });
+    } catch (error) {
+    console.log('Request Failed', error);
+    }
+
   }
 
-  return (
-    <div className="Login">
-      <Form onSubmit={handleSubmit}>
-        <Form.Group size="lg" controlId="email">
-          <Form.Label>username</Form.Label>
-          <Form.Control
-            autoFocus
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group size="lg" controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Group>
-        <Button block size="lg" type="submit" disabled={!validateForm()}>
-          Login
-        </Button>
-      </Form>
-    </div>
-  );
+  setSession(){
+    //check if username is in database
+    Session.set('username',this.state.unameSQL);
+    Session.set('passwd',this.state.passwdSQL);
+    Session.set('value1',this.state.value1);
+    Session.set('value2',this.state.value2);
+  }
+
+  render(){
+    this.setSession();
+    
+    if(Session.get('username') == 'test2'){
+      console.log('hello');
+      window.location.replace('http://localhost:3000/');
+    }
+    return (
+      <div className="Login">
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Group size="lg" controlId="email">
+            <Form.Label>username</Form.Label>
+            <Form.Control
+              autoFocus
+              type="text"
+              value={this.state.username}
+              onChange={(e) => this.setState({username:e.target.value})}
+            />
+          </Form.Group>
+          <Form.Group size="lg" controlId="password">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              value={this.state.password}
+              onChange={(e) => this.setState({password:e.target.value})}
+            />
+          </Form.Group>
+          <Button block size="lg" type="submit" disabled={!this.validateForm()}>
+            Login
+          </Button>
+        </Form>
+      </div>
+    );
+  }
 }
+
+export default Login;
