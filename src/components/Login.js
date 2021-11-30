@@ -1,107 +1,90 @@
-import React from "react";
-import axios from 'axios';
-import './Login.css';
+import React, { useState } from "react";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 import Session from "react-session-api";
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+import "./Login.css";
 
 class Login extends React.Component {
-  constructor(props) {
+  constructor (props){
     super(props);
+    //test multiple posts
     this.state = {
-      username: "",
-      password: "",
+        username:"",
+        password:"",
+        unameSQL:"",
+        passwdSQL:"",
+        value1:"",
+        Value2:""
     };
-
-    this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleInputChange(event) {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
-
-    this.setState({
-      [name]: value
-    });
+  validateForm() {
+    return this.state.username.length > 0 && this.state.password.length > 0;
   }
+  
 
   handleSubmit(event) {
     event.preventDefault();
-    var param = new URLSearchParams();
-    param.append('action','login');
-    param.append('uname',this.state.username);
-    param.append('passwd',this.state.password);
+    //console.log(this.state.username);
+    let url = 'http://www.zyoung.tech/drivers/get-json.php?action=login&uname=' + this.state.username + '&passwd=' + this.state.password;
+    //let url ='http://www.zyoung.tech/drivers/get-json.php?action=login&uname=test2&passwd=test2';
+    try{
+      fetch(url)
+        .then(response => response.json())
+        .then((jsonData) => {
+          this.setState({
+            unameSQL:jsonData.data[0].username,
+            passwdSQL: jsonData.data[0].password,
+            value1: jsonData.data[0].value1,
+            value2: jsonData.data[0].value2
+          });
+        });
+    } catch (error) {
+    console.log('Request Failed', error);
+    }
 
-    axios.get('http://www.zyoung.tech/drivers/get-json.php',{
-      params: param
-    })
-    .then(response => response.json())
-    .then((jsonData) => {
-      // jsonData is parsed json object received from url
-      let username = jsonData.data[0].username;
-      let password = jsonData.data[0].password;
-      let value1 = jsonData.data[0].value1;
-      let value2 = jsonData.data[0].value2;
-      let reading_time = jsonData.data[0].reading_time;
-      Session.set("username", jsonData.data[0].username);
-      Session.set("password", jsonData.data[0].password);
-      Session.set("value1", jsonData.data[0].value1);
-      Session.set("value2", jsonData.data[0].value2);
-      Session.set("reading_time", jsonData.data[0].reading_time);
-      console.log(Session.onSet(username));
-      this.setState({
-        username: username,
-        password:password,
-        value1: value1,
-        value2:value2,
-        reading_time:reading_time
-      });
-  })
-    .catch(error => this.setState({
-      error: error.message
-    }));
   }
 
-  render() {
+  setSession(){
+    //check if username is in database
+    Session.set('username',this.state.unameSQL);
+    Session.set('passwd',this.state.passwdSQL);
+    Session.set('value1',this.state.value1);
+    Session.set('value2',this.state.value2);
+  }
+
+  render(){
+    this.setSession();
+    
+    if(Session.get('username') == 'test2'){
+      console.log('hello');
+      window.location.replace('http://localhost:3000/');
+    }
     return (
-      <div className="write">
-        <h1>Login</h1>
-        <form onSubmit={this.handleSubmit} className="writeForm">
-          <div className="writeFormGroup">
-          <input
-            className="writeInput"
-            placeholder="username"
-            type="text"
-            name="username"
-            value={this.state.username}
-            autoFocus={true}
-            onChange={this.handleInputChange}
-          />
-          </div>
-          <div className="writeFormGroup">
-            <textarea
-              className="writeInput writeText"
-              placeholder=""
+      <div className="Login">
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Group size="lg" controlId="email">
+            <Form.Label>username</Form.Label>
+            <Form.Control
+              autoFocus
               type="text"
-              name="password"
-              value={this.state.password} 
-              onChange={this.handleInputChange}
-              autoFocus={true}
+              value={this.state.username}
+              onChange={(e) => this.setState({username:e.target.value})}
             />
-          </div>
-          <div className="writeFormGroup">
-            <button className="writeSubmit" type="submit">
+          </Form.Group>
+          <Form.Group size="lg" controlId="password">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              value={this.state.password}
+              onChange={(e) => this.setState({password:e.target.value})}
+            />
+          </Form.Group>
+          <Button block size="lg" type="submit" disabled={!this.validateForm()}>
             Login
-            </button>
-            <button className="writeSubmit" value="Cancel">Cancel</button>
-          </div>
-          <div className="writeFormGroup">
-            {this.state.dataSent &&
-              <div className="postBanner">Submit Post Successfully！ Thank you for posting opportunities.</div>
-            }
-          </div>
-        </form>
+          </Button>
+        </Form>
       </div>
     );
   }

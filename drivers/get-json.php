@@ -1,5 +1,8 @@
 <?php
-header('Access-Control-Allow-Origin: *');//允许跨域调用
+header('Access-Control-Allow-Origin: *');//允许跨域调用-for debug
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+header('Access-Control-Allow-Methods: GET, POST, PUT');
+
 $action = $_GET['action'];
 $uname = $_GET['uname'];
 $passwd = $_GET['passwd'];
@@ -42,7 +45,7 @@ $Time = $_GET['Time'];
         $sql .="'";
         $sql .=$passwd;
         $sql .="'";
-        $sql .=" ORDER BY id ASC  LIMIT 500";
+        $sql .=" ORDER BY id DESC  LIMIT 1";
         $query = query_sql($sql);
         while($row = $query->fetch_assoc()){
             $data[] = $row;
@@ -60,8 +63,8 @@ $Time = $_GET['Time'];
 
     function SearchPostData(){
         //查询表
-        $sql = "SELECT Tittle, content, author, reading_time FROM PostData";
-        $sql .=" ORDER BY id ASC  LIMIT 500";
+        $sql = "SELECT id, Tittle, content, author, department reading_time FROM PostData";
+        $sql .=" ORDER BY id DESC  LIMIT 500";
         $query = query_sql($sql);
         while($row = $query->fetch_assoc()){
             $data[] = $row;

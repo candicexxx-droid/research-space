@@ -44,7 +44,7 @@ if ($result = $conn->query($sql)) {
     $result->free();
 }
 
-$sql = "SELECT id, Tittle, content, author, reading_time FROM PostData ORDER BY id ASC";
+$sql = "SELECT id, Tittle, content, author, department, reading_time FROM PostData ORDER BY id ASC";
 
 echo '<table cellspacing="5" cellpadding="5">
       <tr> 
@@ -52,6 +52,7 @@ echo '<table cellspacing="5" cellpadding="5">
         <td>Tittle</td>  
         <td>content</td> 
         <td>author</td> 
+        <td>department</td> 
         <td>post date</td> 
       </tr>';
 echo '<p>PostDdata数据库内容：</p>';
@@ -61,6 +62,7 @@ if ($result = $conn->query($sql)) {
         $row_Machine = $row["Tittle"];
         $row_Type = $row["content"];
         $row_value = $row["author"];
+        $row_department = $row["department"];
         $row_reading_time = $row["reading_time"];
         // Uncomment to set timezone to - 1 hour (you can change 1 to any number)
         $row_reading_time = date("Y-m-d H:i:s", strtotime("$row_reading_time - 8 hours"));
@@ -73,6 +75,7 @@ if ($result = $conn->query($sql)) {
                 <td>' . $row_Machine . '</td>  
                 <td>' . $row_Type . '</td> 
                 <td>' . $row_value . '</td>
+                <td>' . $row_department . '</td>
                 <td>' . $row_reading_time . '</td> 
               </tr>';
     }
