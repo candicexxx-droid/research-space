@@ -63,7 +63,9 @@ class Login extends React.Component {
     
     if(Session.get('username') !== ''){
       alert("Welcome!");
-      window.location.replace('http://www.zyoung.tech:3000/');
+      // window.location.replace('http://www.zyoung.tech:3000/');
+      window.location.replace('http://localhost:3000/');
+      
     }
     return (
       <div className="Login">
