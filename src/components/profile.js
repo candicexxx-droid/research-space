@@ -10,8 +10,8 @@ let testtitles = Array(10).fill('test');
 let testcontent = Array(10).fill('test\ntesttesttest hi\neggert is dumb hihihihih');
 let testdate = Array(10).fill('2021-11-25 05:16:08');
 
-Session.set("username", "");
-Session.set("password", "test");
+Session.set("username", "admin");
+Session.set("password", "admin");
 
 class UserPost extends React.Component {
   //how to render a single post
@@ -40,6 +40,7 @@ class UserPostHolder extends React.Component {
           times:[]
       };
   }
+  
 
 
   //this function should get all posts from the back end and
@@ -78,19 +79,25 @@ class UserPostHolder extends React.Component {
   getSavedPost() {
 
     let userData = 'http://www.zyoung.tech/drivers/get-json.php?action=login&uname='+Session.get("username")+"&passwd="+Session.get("password");
-    let savedPostId=["1","2","3","4","5","6"]//for testing
+    // let savedPostId=["1","2","3","4","5","6"]//for testing
+    let savedPostId=""
     // console.log(userData);
     //fetc user saved post id from backend value1 or value2?
     fetch(userData)
     .then(response => response.json())
     .then((jsonData) => {
     // jsonData is parsed json object received from url
-    for(let i = 0; i < jsonData.data.length; i++){
-      //read savedPost ID 
+    console.log("savedPostId")
+    savedPostId=jsonData.data[0].value1;
+    savedPostId=savedPostId.split(",");
+    // let savedPostId=jsonData.data
+    // for(let i = 0; i < jsonData.data.value1; i++){
+    //   //read savedPost ID 
         
-    }
+    // }   
+});
 
-    fetch(databaseurl)
+fetch(databaseurl)
       .then(response => response.json())
       .then((jsonData) => {
       // jsonData is parsed json object received from url
@@ -120,8 +127,6 @@ class UserPostHolder extends React.Component {
   });
 
 
-    
-});
 }
 
   render(){
