@@ -6,8 +6,6 @@ import Session from "react-session-api";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import {
   Navigation,
-  Footer,
-  Home,
   Login,
   MakePost,
   Profile,
@@ -16,7 +14,7 @@ import {
 
 let databaseurl = 'http://www.zyoung.tech/drivers/get-json.php?action=post';
 
-//simulating that there is a user loged in
+// simulating that there is a user loged in
 Session.set('username','admin');
 Session.set('passwd','admin');
 
