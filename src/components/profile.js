@@ -10,8 +10,8 @@ let testtitles = Array(10).fill('test');
 let testcontent = Array(10).fill('test\ntesttesttest hi\neggert is dumb hihihihih');
 let testdate = Array(10).fill('2021-11-25 05:16:08');
 
-Session.set("username", "");
-Session.set("password", "test");
+Session.set("username", "admin");
+Session.set("password", "admin");
 
 class UserPost extends React.Component {
   //how to render a single post
@@ -40,6 +40,7 @@ class UserPostHolder extends React.Component {
           times:[]
       };
   }
+  
 
 
   //this function should get all posts from the back end and
