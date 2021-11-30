@@ -3,6 +3,7 @@ import axios from 'axios';
 import './post.css'
 import { Link } from "react-router-dom";
 import Alert from 'react-bootstrap/Alert';
+import Session from "react-session-api";
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 class PostForm extends React.Component {
@@ -12,7 +13,7 @@ class PostForm extends React.Component {
       Tittle: "",
       department: "Engineering",
       content: "",
-      author: "eggert",
+      author: "",
       api_key: "eggertisgod",
     };
 
@@ -33,10 +34,11 @@ class PostForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    var user = Session.get('username');
     var params = new URLSearchParams();
     params.append('Tittle',this.state.Tittle);
     params.append('content',this.state.content);
-    params.append('author', 'gloria');
+    params.append('author', user);
     params.append('department', this.state.department);
     params.append('api_key','eggertisgod');
     axios({
@@ -55,6 +57,7 @@ class PostForm extends React.Component {
   }
 
   render() {
+    console.log(Session.get('username'));
     return (
       <div className="write">
         <h1>Create Post</h1>
