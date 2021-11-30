@@ -4,11 +4,11 @@ import Button from "react-bootstrap/Button";
 import "./Login.css";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   function validateForm() {
-    return email.length > 0 && password.length > 0;
+    return username.length > 0 && password.length > 0;
   }
 
   function handleSubmit(event) {
@@ -22,9 +22,9 @@ export default function Login() {
           <Form.Label>username</Form.Label>
           <Form.Control
             autoFocus
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
         </Form.Group>
         <Form.Group size="lg" controlId="password">
