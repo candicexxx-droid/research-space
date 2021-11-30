@@ -37,6 +37,7 @@ class PostForm extends React.Component {
     params.append('Tittle',this.state.Tittle);
     params.append('content',this.state.content);
     params.append('author', 'gloria');
+    params.append('department', this.state.department);
     params.append('api_key','eggertisgod');
     axios({
       method:'post',
