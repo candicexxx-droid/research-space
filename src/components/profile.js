@@ -78,22 +78,21 @@ class UserPostHolder extends React.Component {
 
   getSavedPost() {
 
+    // let userData = 'http://www.zyoung.tech/drivers/get-json.php?action=login&uname=admin&passwd=admin';
     let userData = 'http://www.zyoung.tech/drivers/get-json.php?action=login&uname='+Session.get("username")+"&passwd="+Session.get("password");
-    let savedPostId="33,32,1";//for testing
-    // console.log(userData);
-    //fetc user saved post id from backend value1 or value2?
-  //ISSUE with fetch userData
-//     fetch(userData)
-//     .then(response => response.json())
-//     .then((jsonData) => {
-//     // jsonData is parsed json object received from url
-//     savedPostId=jsonData.data[0].value1;
-//     console.log("savedPostID")
-//     console.log(savedPostId)
+    let savedPostId="";//for testing
+//fetch savedPostId 
+    fetch(userData)
+    .then(response => response.json())
+    .then((jsonData) => {
+    // jsonData is parsed json object received from url
+    savedPostId=jsonData.data[0].value1;
+    // console.log("savedPostID")
+    // console.log(savedPostId)
     
 
   
-// });
+});
 savedPostId=savedPostId.split(",");
 fetch(databaseurl)
       .then(response => response.json())
