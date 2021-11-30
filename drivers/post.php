@@ -10,10 +10,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $Tittle = test_input($_POST["Tittle"]);
         $content = test_input($_POST["content"]);
         $author = test_input($_POST["author"]);
+        $department = test_input($_POST["department"]);
         // Create connection
         require_once $_SERVER['DOCUMENT_ROOT'].'/drivers/loginDB.php';
-        $sql = "INSERT INTO PostData (Tittle, content, author)
-        VALUES ('" . $Tittle . "', '" . $content . "', '" . $author . "')";
+        $sql = "INSERT INTO PostData (Tittle, content, author, department)
+        VALUES ('" . $Tittle . "', '" . $content . "', '" . $author . "', '" .$department."')";
         echo "$sql";
         if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";

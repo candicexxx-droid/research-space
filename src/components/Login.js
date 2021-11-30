@@ -10,8 +10,13 @@ class Login extends React.Component {
     this.state = {
       username: "",
       password: "",
+      usernameresult: "",
+      passwordresult: "",
+      value1result:"",
+      value2result:"",
+      reading_timeresult:"",
+      value:0
     };
-
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -28,42 +33,40 @@ class Login extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    var param = new URLSearchParams();
-    param.append('action','login');
-    param.append('uname',this.state.username);
-    param.append('passwd',this.state.password);
+    //var param = new URLSearchParams();
+    //param.append('action','login');
+    //param.append('uname',this.state.username);
+    //param.append('passwd',this.state.password);
 
-    axios.get('http://www.zyoung.tech/drivers/get-json.php',{
-      params: param
-    })
+    fetch('http://www.zyoung.tech/drivers/get-json.php?action=login&uname='+this.state.username+'&passwd='+this.state.password)
     .then(response => response.json())
-    .then((jsonData) => {
-      // jsonData is parsed json object received from url
-      let username = jsonData.data[0].username;
-      let password = jsonData.data[0].password;
-      let value1 = jsonData.data[0].value1;
-      let value2 = jsonData.data[0].value2;
-      let reading_time = jsonData.data[0].reading_time;
-      Session.set("username", jsonData.data[0].username);
-      Session.set("password", jsonData.data[0].password);
-      Session.set("value1", jsonData.data[0].value1);
-      Session.set("value2", jsonData.data[0].value2);
-      Session.set("reading_time", jsonData.data[0].reading_time);
-      console.log(Session.onSet(username));
+    .then(jsondata => {
       this.setState({
-        username: username,
-        password:password,
-        value1: value1,
-        value2:value2,
-        reading_time:reading_time
-      });
-  })
+        usernameresult: jsondata.data[0].username,
+        passwordresult: jsondata.data[0].password,
+        value1result: jsondata.data[0].value1,
+        value2result: jsondata.data[0].value2,
+        reading_timeresult: jsondata.data[0].reading_time,
+        value:1
+      })
+    })
     .catch(error => this.setState({
       error: error.message
     }));
+    Session.set("username", this.state.usernameresult);
+    Session.set("password", this.state.passwordresult);
+    Session.set("value1", this.state.value1result);
+    Session.set("value2", this.state.value2result);
+    Session.set("reading_time", this.state.reading_timeresult);
+    console.log(this.state.value);
+    console.log(this.state.passwordresult);
+    console.log(this.state.value1result);
+    console.log(this.state.value2result);
+    console.log(this.state.reading_timeresult);
   }
 
   render() {
+    
     return (
       <div className="write">
         <h1>Login</h1>
@@ -82,8 +85,8 @@ class Login extends React.Component {
           <div className="writeFormGroup">
             <textarea
               className="writeInput writeText"
-              placeholder=""
-              type="text"
+              placeholder="password"
+              type="password"
               name="password"
               value={this.state.password} 
               onChange={this.handleInputChange}
