@@ -6,12 +6,12 @@ import "./profile.css";
 
 
 let databaseurl = 'http://www.zyoung.tech/drivers/get-json.php?action=post'; //fetch all profile data 
-let testtitles = Array(10).fill('test');
-let testcontent = Array(10).fill('test\ntesttesttest hi\neggert is dumb hihihihih');
-let testdate = Array(10).fill('2021-11-25 05:16:08');
-
-Session.set("username", "admin");
-Session.set("password", "admin");
+// let testtitles = Array(10).fill('test');
+// let testcontent = Array(10).fill('test\ntesttesttest hi\neggert is dumb hihihihih');
+// let testdate = Array(10).fill('2021-11-25 05:16:08');
+let savedPostId="";//for testing
+// Session.set("username", "admin");
+// Session.set("password", "admin");
 
 class UserPost extends React.Component {
   //how to render a single post
@@ -79,22 +79,20 @@ class UserPostHolder extends React.Component {
   getSavedPost() {
 
     // let userData = 'http://www.zyoung.tech/drivers/get-json.php?action=login&uname=admin&passwd=admin';
-    let userData = 'http://www.zyoung.tech/drivers/get-json.php?action=login&uname='+Session.get("username")+"&passwd="+Session.get("password");
-    let savedPostId="";//for testing
+    let userData = 'http://www.zyoung.tech/drivers/get-json.php?action=login&uname='+Session.get("username")+"&passwd="+Session.get("passwd");
+    console.log("userData")
+    console.log(userData)
+    
 //fetch savedPostId 
     fetch(userData)
     .then(response => response.json())
     .then((jsonData) => {
     // jsonData is parsed json object received from url
-    savedPostId=jsonData.data[0].value1;
-    // console.log("savedPostID")
-    // console.log(savedPostId)
     
-
-  
-});
-savedPostId=savedPostId.split(",");
-fetch(databaseurl)
+    savedPostId=jsonData.data[0].value1;
+    savedPostId=savedPostId.split(",");
+    console.log(savedPostId)
+    fetch(databaseurl)
       .then(response => response.json())
       .then((jsonData) => {
       // jsonData is parsed json object received from url
@@ -118,6 +116,16 @@ fetch(databaseurl)
           times:times,
       });
   });
+    
+    
+
+  
+});
+
+
+
+
+
 }
 
   render(){

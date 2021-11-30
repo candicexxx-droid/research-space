@@ -16,9 +16,9 @@ class Navigation extends React.Component {
     };
 
     } else {
-      console.log('get session name')
-      console.log(Session.get("username"))
-      console.log('set login==true')
+      // console.log('get session name')
+      // console.log(Session.get("username"))
+      // console.log('set login==true')
       this.state = {
         login:true //if username is null then the login state is false
     };
@@ -40,6 +40,32 @@ class Navigation extends React.Component {
     
    
     
+  }
+
+  checkLogStatus () {
+
+    if (Session.get("username")) {//if user logged in, show make a post and profile
+      return (
+        <div>
+          <li className="nav-item">
+                  <NavLink className="nav-link" to="/MakePost">
+                    Make A Post
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/profile">
+                    Profile
+                  </NavLink>
+                </li>
+        </div>
+      )
+
+
+    } 
+
+    
+    
+
   }
 
   loginOutSwitch () {
@@ -98,21 +124,7 @@ class Navigation extends React.Component {
                     <span className="sr-only">(current)</span>
                   </NavLink>
                 </li>
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/MakePost">
-                    Make A Post
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/contact">
-                    Opportunities
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/profile">
-                    Profile
-                  </NavLink>
-                </li>
+                      {this.checkLogStatus()}
                 <li className="nav-item" onClick={() => this.handleClick()}>
                   {this.loginOutSwitch()}
                 </li>
