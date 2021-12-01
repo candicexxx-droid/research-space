@@ -57,7 +57,7 @@ class PostForm extends React.Component {
   }
 
   render() {
-    console.log(Session.get('username'));
+    // console.log(Session.get('username'));
     return (
       <div className="write">
         <h1>Create Post</h1>
