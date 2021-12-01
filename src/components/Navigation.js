@@ -196,6 +196,11 @@ class Navigation extends React.Component {
                 <li className="nav-item" onClick={() => this.handleClick()}>               
                   {this.loginOutSwitch()}
                 </li>
+                <li className="nav-item" >
+                  <NavLink className="nav-link" to="/Register">
+                    Register
+                  </NavLink>
+                </li>
               </ul>
             </div>
           </div>

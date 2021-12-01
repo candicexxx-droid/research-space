@@ -11,6 +11,7 @@ import {
   Profile,
   LikeButton,
   Filter,
+  Register,
 } from "./components";
 
 let databaseurl = 'http://www.zyoung.tech/drivers/get-json.php?action=post';
@@ -211,6 +212,7 @@ ReactDOM.render(
       <Route path="/MakePost" element={<MakePost />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/Login" element={<Login />} />
+      <Route path="/Register" element={<Register />} />
     </Routes>
 
   </Router>
