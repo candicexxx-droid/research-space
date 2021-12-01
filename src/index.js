@@ -10,6 +10,7 @@ import {
   MakePost,
   Profile,
   LikeButton,
+  Filter,
 } from "./components";
 
 let databaseurl = 'http://www.zyoung.tech/drivers/get-json.php?action=post';
@@ -27,6 +28,12 @@ function Post(props){
     const handleToggle = () => {
       setActive(!isActive);
     };
+    let savekey;
+    if(props.logedin){
+        savekey = <LikeButton id={props.id}/>;
+    }else{
+        savekey = <h4 className='postDate'>Please log in</h4>;
+    }
 
     //each post is a div with a title and subject
     return (
@@ -36,7 +43,7 @@ function Post(props){
             <h3 className='postDate'>{"Department: " + props.department}</h3>
             <h1 className='postTitle'  onClick={handleToggle}>{props.title}</h1>
             <p className='postContent'>{isActive ? "": props.content}</p>
-            <LikeButton id={props.id}/>
+            {savekey}
         </div>
         
         </>
@@ -61,6 +68,7 @@ class PostHolder extends React.Component {
             IDs:[],
             authors:[],
             department:[],
+            logedin:false,
             searchInput: ""
         };
 
@@ -87,22 +95,22 @@ class PostHolder extends React.Component {
             let IDs = [];
             let authors = [];
             let department = [];
-            const filter = document.getElementsByClassName('filter');
-            const schools = document.getElementsByTagName('th');
-            let filtobj = [];//schools to filter out
-            for (let i = 0; i < filter.length; i++){
-                if(filter[i].checked){
-                    filtobj.push(schools[i].innerHTML);
-                }
+            let filtobj;
+            if (Session.get('filteroption').split(',').includes('')){
+                filtobj = [];
+            }else{
+                filtobj = Session.get('filteroption').split(',');
             }
+            //console.log(filtobj);
             //for there is a search string
+            //let filtobj=[];
             if(this.state.searchInput){
                 //search string and filter both apply
                 for(let i = 0; i < jsonData.data.length; i++){
                     let searchString = this.state.searchInput.toLowerCase();
                     if(jsonData.data[i].Tittle.toLowerCase().includes(searchString) || jsonData.data[i].content.toLowerCase().includes(searchString) || jsonData.data[i].author.toLowerCase().includes(searchString))
                     {
-                        if(!filtobj.length || filtobj.includes(jsonData.data[i].department)){
+                        if(!filtobj.length || (filtobj.includes(jsonData.data[i].department))){
                             titles.push(jsonData.data[i].Tittle);
                             contents.push(jsonData.data[i].content);
                             times.push(jsonData.data[i].reading_time);
@@ -126,14 +134,26 @@ class PostHolder extends React.Component {
                     }
                 }
             }
-            this.setState({
-                titles: titles,
-                contents:contents,
-                times:times,
-                IDs:IDs,
-                authors:authors,
-                department:department,
-            });
+            if(Session.get('username') === '' || Session.get('username') === undefined){
+                this.setState({
+                    titles: titles,
+                    contents:contents,
+                    times:times,
+                    IDs:IDs,
+                    authors:authors,
+                    department:department,
+                });
+            }else{
+                this.setState({
+                    titles: titles,
+                    contents:contents,
+                    times:times,
+                    IDs:IDs,
+                    authors:authors,
+                    department:department,
+                    logedin:true,
+                });
+            }
         });
     }
 
@@ -151,6 +171,7 @@ class PostHolder extends React.Component {
                     author={this.state.authors[index]}
                     id={this.state.IDs[index]}
                     department={this.state.department[index]}
+                    logedin={this.state.logedin}
                     key={index}
                 />));
 
@@ -160,22 +181,7 @@ class PostHolder extends React.Component {
                 <button className="btn-search"><i >?</i></button>
                 <input type="text" className="input-search" placeholder="Type to Search..." value={this.state.searchInput} onChange={this.handleSearch}/>
             </div>
-            <h2>Search filter</h2>
-            <table>
-            
-            <tr>
-                <th>Engineering</th>
-                <th>Physical science</th>
-                <th>Life Science and Medical school</th>
-                <th>Arts and Social Science</th>
-            </tr>
-            <tr>
-                <td><input type="checkbox" className="filter"/></td>
-                <td><input type="checkbox" className="filter"/></td>
-                <td><input type="checkbox" className="filter"/></td>
-                <td><input type="checkbox" className="filter"/></td>
-            </tr>
-        </table>
+            <Filter/>
             <div className="post_lists">
                 {post}
             </div>
