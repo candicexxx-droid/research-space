@@ -181,7 +181,9 @@ class PostHolder extends React.Component {
                 <button className="btn-search"><i >?</i></button>
                 <input type="text" className="input-search" placeholder="Type to Search..." value={this.state.searchInput} onChange={this.handleSearch}/>
             </div>
+            <div className="filter">
             <Filter/>
+            </div>
             <div className="post_lists">
                 {post}
             </div>
@@ -201,7 +203,7 @@ class PostHolder extends React.Component {
 ReactDOM.render(
     <div>
         <div className="rounter">
-            <Router>
+     <Router>
     <Navigation />
     <Routes>
 
