@@ -131,29 +131,7 @@ body {
     width: 150px;
   }
 
-table {
-    border:double;
-    border-radius: 1rem;
-    width: 98%;
-    height: 100px;
-    margin: 1%;
-}
-th {
-    height: 50px;
-    border: 1px dashed;
-    border-radius: 1rem;
-}
-td {
-    position: relative;
-}
-
-td > input {
-    position: absolute;
-    width:30px;
-    height:30px;
-    background:white;
-    border-radius:5px;
-    border:2px solid #555;
-    left: 47%;
-    top: 0px;
+.filter{
+    width: 40%;
+    margin-left: 30%;
 }
