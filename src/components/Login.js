@@ -60,7 +60,7 @@ class Login extends React.Component {
     this.setSession();
     
     if(Session.get('username') !== ''){
-      alert(Session.get('username'));
+      alert("Welcome "+Session.get('username'));
       // window.location.replace('http://www.zyoung.tech:3000/');
       return(<Navigate to='/'/>);
       
