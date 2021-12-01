@@ -10,7 +10,7 @@ class Navigation extends React.Component {
   constructor (props){
     super(props);
     //test multiple posts
-    if (Session.get("username")=="" || Session.get("username")==null) {
+    if (Session.get("username")==="" || Session.get("username")===null) {
       console.log('set login==false')
       this.state = {
         login:false //if username is null then the login state is false
@@ -44,7 +44,8 @@ class Navigation extends React.Component {
   }
 
   checkLogStatus () {
-
+    console.log("username is")
+    console.log(Session.get("username"))
     if (Session.get("username")) {//if user logged in, show make a post and profile
       return (
         <div className="dynamic-nav">

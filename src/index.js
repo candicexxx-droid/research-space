@@ -18,14 +18,13 @@ let databaseurl = 'http://www.zyoung.tech/drivers/get-json.php?action=post';
 Session.set('username','admin');
 Session.set('passwd','admin');
 
-if(!Session.get('username')){
-    console.log('I am here')
-    window.location.replace("http://localhost:3000/Login");
-}
+// if(!Session.get('username')){
+//     console.log('I am here')
+//     window.location.replace("http://localhost:3000/Login");
+// }
 
 
-//Read Session
-console.log("The username is: " + Session.get('username'));
+
 
 function Post(props){
 
@@ -158,7 +157,8 @@ class PostHolder extends React.Component {
                     department={this.state.department[index]}
                     key={index}
                 />));
-
+            //Read Session
+console.log("The username is: " + Session.get('username'));
         return (
             <>
             <div className="search-box">
