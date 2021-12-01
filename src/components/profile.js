@@ -132,7 +132,7 @@ class UserPostHolder extends React.Component {
   render(){
     if (!Session.get("username")) {//if user does not login
       alert("You are not loggin!"); 
-      return(<Navigate to='/'/>);
+      return(<Navigate to='/Login'/>);
       
 
     } else {

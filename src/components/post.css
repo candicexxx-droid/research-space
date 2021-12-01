@@ -50,6 +50,7 @@ h1{
   border: none;
   padding: 20px;
   width: 70vw;
+  border-radius: 10px;
 }
 
 .writeInput::plv wholder {
@@ -89,5 +90,6 @@ h1{
   font-size: 25px;
   width: 100%;
   text-align: center;
-  /* font-family: "Apple Chancery", cursive; */
+  bottom: 0;
+  position: fixed;
 }

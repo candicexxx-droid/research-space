@@ -1,7 +1,7 @@
 import React from "react";
 import axios from 'axios';
 import './post.css'
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Alert from 'react-bootstrap/Alert';
 import Session from "react-session-api";
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
@@ -58,9 +58,13 @@ class PostForm extends React.Component {
 
   render() {
     // console.log(Session.get('username'));
+    if(Session.get('username') === undefined || Session.get('username') === ""){
+      alert("Please log in!");
+      return(<Navigate to='/Login'/>);
+    }
     return (
       <div className="write">
-        <h1>Create Post</h1>
+        <h1>Post Opportunities</h1>
         <form onSubmit={this.handleSubmit} className="writeForm">
         <div className="writeSelection">
             <label>
@@ -75,6 +79,7 @@ class PostForm extends React.Component {
           </div>
           <div className="writeFormGroup">
           <input
+            required
             className="writeInput"
             placeholder="Title"
             type="text"
@@ -86,6 +91,7 @@ class PostForm extends React.Component {
           </div>
           <div className="writeFormGroup">
             <textarea
+              required
               className="writeInput writeText"
               placeholder="Research Information..."
               type="text"
@@ -96,7 +102,6 @@ class PostForm extends React.Component {
             />
           </div>
           <div className="writeFormGroup">
-            <input type="file"name="attachments" className="inputs" />
             <button className="writeSubmit" type="submit">
             Publish
             </button>
