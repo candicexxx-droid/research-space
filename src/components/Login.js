@@ -88,6 +88,8 @@ class Login extends React.Component {
             <Button block size="lg" type="submit" disabled={!this.validateForm()}>
               Login
             </Button>
+            <a href="http://www.zyoung.tech/drivers/reg.html">
+            <Button block size="lg" type="button">new user</Button></a>
           </Form>
         </div>
       );
