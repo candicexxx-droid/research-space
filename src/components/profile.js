@@ -3,6 +3,7 @@ import { render } from "react-dom";
 import Session  from "react-session-api";
 // import Post from './home'
 import "./profile.css";
+import { Navigate } from "react-router-dom";
 
 
 let databaseurl = 'http://www.zyoung.tech/drivers/get-json.php?action=post'; //fetch all profile data 
@@ -129,28 +130,38 @@ class UserPostHolder extends React.Component {
 }
 
   render(){
-    if (this.props.property=="userPost") {
-      this.getPostData(); 
+    if (!Session.get("username")) {//if user does not login
+      alert("You are not loggin!"); 
+      return(<Navigate to='/'/>);
+      
+
     } else {
-      this.getSavedPost();
+
+      if (this.props.property=="userPost") {
+        this.getPostData(); 
+      } else {
+        this.getSavedPost();
+      }
+        const post = this.state.titles.map((title,index) => (
+                <UserPost
+                    title={title} 
+                    content={this.state.contents[index]}
+                    times={this.state.times[index]}
+                    key={index}
+                />));
+  
+        return (
+            <>
+            <div className="userPostL">
+                {post}
+            </div>
+            </>
+        );
+  
     }
-      const post = this.state.titles.map((title,index) => (
-              <UserPost
-                  title={title} 
-                  content={this.state.contents[index]}
-                  times={this.state.times[index]}
-                  key={index}
-              />));
 
-      return (
-          <>
-          <div className="userPostL">
-              {post}
-          </div>
-          </>
-      );
-
-  }
+    }
+    
 
 
 }

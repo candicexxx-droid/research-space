@@ -75,6 +75,12 @@ class Navigation extends React.Component {
     
   }
 
+  handleClickOthers() {
+    if (!Session.get("username")){ //if user does not loggin 
+        alert("you are not loggined!")
+    }
+  }
+
   // checkLogStatus () {
   //   // console.log("username passed from index")
   //   // console.log(this.props.userName)
@@ -159,12 +165,12 @@ class Navigation extends React.Component {
                   </NavLink>
                 </li>
                 <div className="dynamic-nav">
-          <li className="nav-item">
+          <li className="nav-item" >
                   <NavLink className="nav-link" to="/MakePost">
                     Make A Post
                   </NavLink>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item" >
                   <NavLink className="nav-link" to="/profile">
                     Profile
                   </NavLink>
