@@ -19,6 +19,7 @@ let databaseurl = 'http://www.zyoung.tech/drivers/get-json.php?action=post';
 
 
 
+
 function Post(props){
 
     const [isActive, setActive] = useState("false");
@@ -173,7 +174,7 @@ class PostHolder extends React.Component {
                     key={index}
                 />));
             //Read Session
-console.log("The username is: " + Session.get('username'));
+
         return (
             <>
             <div className="search-box">
@@ -192,7 +193,11 @@ console.log("The username is: " + Session.get('username'));
 
 }
 
-
+// function getLoginStatus(){
+//     console.log("from index.js");
+//     console.log("The username is: " + Session.get('username'));
+// }
+// getLoginStatus();
 ReactDOM.render(
     <div>
         <div className="rounter">
