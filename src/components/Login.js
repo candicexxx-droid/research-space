@@ -69,7 +69,7 @@ class Login extends React.Component {
         <div className="Login">
           <Form onSubmit={this.handleSubmit}>
             <Form.Group size="lg" controlId="email">
-              <Form.Label>username</Form.Label>
+              <Form.Label>Username</Form.Label>
               <Form.Control
                 autoFocus
                 type="text"
@@ -85,7 +85,7 @@ class Login extends React.Component {
                 onChange={(e) => this.setState({password:e.target.value})}
               />
             </Form.Group>
-            <Button block size="lg" type="submit" disabled={!this.validateForm()}>
+            <Button block size="lg" type="submit" disabled={!this.validateForm()} className="logButton">
               Login
             </Button>
             <a href="http://www.zyoung.tech/drivers/reg.html">

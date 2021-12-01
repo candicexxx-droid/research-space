@@ -50,6 +50,7 @@ h1{
   border: none;
   padding: 20px;
   width: 70vw;
+  border-radius: 10px;
 }
 
 .writeInput::plv wholder {
