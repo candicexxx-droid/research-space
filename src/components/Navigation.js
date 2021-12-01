@@ -21,7 +21,7 @@ class Navigation extends React.Component {
       // console.log(Session.get("username"))
       // console.log('set login==true')
       this.state = {
-        login:true //if username is null then the login state is false
+        login:false //if username is null then the login state is false
     };
 
     }
@@ -32,9 +32,9 @@ class Navigation extends React.Component {
   handleClick() {
     
     if (Session.get("username")) {//if username exists and user click logout button; log user out and clear session
-      this.setState({
-        login: !this.state.login
-    });
+    //   this.setState({
+    //     login: !this.state.login
+    // });
     Session.clear();
 
     }
@@ -44,8 +44,7 @@ class Navigation extends React.Component {
   }
 
   checkLogStatus () {
-    console.log("username is")
-    console.log(Session.get("username"))
+    
     if (Session.get("username")) {//if user logged in, show make a post and profile
       return (
         <div className="dynamic-nav">
@@ -74,9 +73,12 @@ class Navigation extends React.Component {
     
     console.log("check this.state.login")
     console.log(this.state.login)
-    if (this.state.login) {
+    console.log("username is")
+    console.log(Session.get("username"))
+    if (Session.get("username")) {
       console.log(this.state.login)
       console.log('user have loggedin')
+      
         return (
           
           <NavLink className="nav-link" to="/" >
