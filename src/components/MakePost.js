@@ -58,7 +58,7 @@ class PostForm extends React.Component {
 
   render() {
     // console.log(Session.get('username'));
-    if(Session.get('username') === undefined){
+    if(Session.get('username') === undefined || Session.get('username') === ""){
       alert("Please log in!");
       return(<Navigate to='/'/>);
     }
