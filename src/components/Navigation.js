@@ -9,7 +9,7 @@ class Navigation extends React.Component {
   constructor (props){
     super(props);
     //test multiple posts
-    if (Session.get("username")==="" || Session.get("username")===null) {
+    if (Session.get("username")==="" || Session.get("username")===undefined) {
       console.log('set login==false')
       this.state = {
         login:false //if username is null then the login state is false
