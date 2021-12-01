@@ -9,6 +9,8 @@ import "./Navigation.css";
 // // console.log("check username")
 // console.log('from navigation bar')
 // console.log(Session.get("username"))
+let fecthurl = 'http://www.zyoung.tech/drivers/get-json.php?action=login&uname=test&passwd=test';
+
 class Navigation extends React.Component {
   constructor (props){
     super(props);
@@ -58,13 +60,15 @@ class Navigation extends React.Component {
     } else {//if user name is null and user clicked loggin 
       console.log("clicked! and start to enter user info...")
       // window.location.replace('http://localhost:3000/Login');
-      //trigger rerender, but have to wait for user to finish
+      // //trigger rerender, but have to wait for user to finish
       // while(!Session.get("username")){
 
       // }
-      this.setState({
-        showLogOut:true,
-      })
+      
+      //use fetch to keep updating the state
+
+  
+
     //   this.setState({
     //     userName: Session.get("username")
     // });
@@ -72,6 +76,18 @@ class Navigation extends React.Component {
     }
     
    
+    
+  }
+
+  checkLogIn() {
+          // let userName=Session.get("username");
+          fetch(fecthurl)
+          .then(response => response.json())
+          .then((jsonData) => {  
+          this.setState({
+            userName: Session.get("username")
+          });
+      });
     
   }
 
@@ -110,7 +126,7 @@ class Navigation extends React.Component {
 
     // console.log("username is")
     // console.log(Session.get("username"))
-    if (this.state.showLogOut) {
+    if (this.state.userName) {
       // console.log(this.state.login)
       // console.log('user have loggedin')
       
@@ -146,7 +162,7 @@ class Navigation extends React.Component {
 
   render(){
     console.log('rendering!')
-    
+    this.checkLogIn()
 
     return (
       <Navbar sticky="top" >
