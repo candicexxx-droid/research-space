@@ -2,19 +2,19 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Session from "react-session-api";
+import { Navigate } from "react-router-dom";
 import "./Login.css";
 
 class Login extends React.Component {
   constructor (props){
     super(props);
-    //test multiple posts
     this.state = {
         username:"",
         password:"",
         unameSQL:"",
         passwdSQL:"",
         value1:"",
-        Value2:""
+        value2:"",
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -26,9 +26,7 @@ class Login extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    //console.log(this.state.username);
     let url = 'http://www.zyoung.tech/drivers/get-json.php?action=login&uname=' + this.state.username + '&passwd=' + this.state.password;
-    //let url ='http://www.zyoung.tech/drivers/get-json.php?action=login&uname=test2&passwd=test2';
     try{
       fetch(url)
         .then(response => response.json())
@@ -62,37 +60,38 @@ class Login extends React.Component {
     this.setSession();
     
     if(Session.get('username') !== ''){
-      alert("Welcome!");
+      alert(Session.get('username'));
       // window.location.replace('http://www.zyoung.tech:3000/');
-      window.location.replace('http://localhost:3000/');
+      return(<Navigate to='/'/>);
       
+    }else{
+      return (
+        <div className="Login">
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Group size="lg" controlId="email">
+              <Form.Label>username</Form.Label>
+              <Form.Control
+                autoFocus
+                type="text"
+                value={this.state.username}
+                onChange={(e) => this.setState({username:e.target.value})}
+              />
+            </Form.Group>
+            <Form.Group size="lg" controlId="password">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                value={this.state.password}
+                onChange={(e) => this.setState({password:e.target.value})}
+              />
+            </Form.Group>
+            <Button block size="lg" type="submit" disabled={!this.validateForm()}>
+              Login
+            </Button>
+          </Form>
+        </div>
+      );
     }
-    return (
-      <div className="Login">
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Group size="lg" controlId="email">
-            <Form.Label>username</Form.Label>
-            <Form.Control
-              autoFocus
-              type="text"
-              value={this.state.username}
-              onChange={(e) => this.setState({username:e.target.value})}
-            />
-          </Form.Group>
-          <Form.Group size="lg" controlId="password">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              value={this.state.password}
-              onChange={(e) => this.setState({password:e.target.value})}
-            />
-          </Form.Group>
-          <Button block size="lg" type="submit" disabled={!this.validateForm()}>
-            Login
-          </Button>
-        </Form>
-      </div>
-    );
   }
 }
 

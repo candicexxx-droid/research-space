@@ -13,16 +13,8 @@ import {
 } from "./components";
 
 let databaseurl = 'http://www.zyoung.tech/drivers/get-json.php?action=post';
-
-// simulating that there is a user loged in
-Session.set('username','admin');
-Session.set('passwd','admin');
-
-// if(!Session.get('username')){
-//     console.log('I am here')
-//     window.location.replace("http://localhost:3000/Login");
-// }
-
+//Session.set("username","");
+//Session.set("passwd","");
 
 
 
@@ -72,6 +64,7 @@ class PostHolder extends React.Component {
 
         this.handleSearch = this.handleSearch.bind(this);
     }
+
 
     handleSearch(event) {
         this.setState({searchInput: event.target.value});
@@ -147,6 +140,7 @@ class PostHolder extends React.Component {
 
     render(){
         this.getSQLdata();
+        //console.log(Session.get('username'));
         const post = this.state.titles.map((title,index) => (
                 <Post
                     title={title} 
