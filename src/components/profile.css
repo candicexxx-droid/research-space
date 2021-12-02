@@ -8,6 +8,14 @@ body{
     align-items: center;
     font-family: 'Lato' !important;
   }
+
+  h1{
+    color:white;
+  }
+
+  h3{
+    color:white;
+  }
   
   .Resizer {
     background: #000;

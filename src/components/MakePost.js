@@ -66,7 +66,7 @@ class PostForm extends React.Component {
         <h1>Post Opportunities</h1>
         <form onSubmit={this.handleSubmit} className="writeForm">
         <div className="writeSelection">
-            <label>
+            <label className="dept">
               Department:
               <select className="selectionBox" name="department" onChange={this.handleInputChange}>
                 <option value="Engineering">Engineering</option>

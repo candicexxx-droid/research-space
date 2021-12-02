@@ -69,7 +69,7 @@ class Register extends React.Component {
               onChange={(e) => this.setState({password:e.target.value})}
             />
           </Form.Group>
-          <Button block size="lg" type="submit" disabled={!this.validateForm()} className="logButton">
+          <Button size="lg" type="submit" disabled={!this.validateForm()} className="logButton">
             Register
           </Button>
         </Form>
