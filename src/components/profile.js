@@ -130,12 +130,6 @@ class UserPostHolder extends React.Component {
 }
 
   render(){
-    if (!Session.get("username")) {//if user does not login
-      alert("You are not loggin!"); 
-      return(<Navigate to='/Login'/>);
-      
-
-    } else {
 
       if (this.props.property=="userPost") {
         this.getPostData(); 
@@ -158,7 +152,6 @@ class UserPostHolder extends React.Component {
             </>
         );
   
-    }
 
     }
     
@@ -234,12 +227,16 @@ class SavedPosts extends React.Component{
   }
 }
 function Profile (){
-  return (
-    <div>
-      <ProfilePage />
-    </div>
-
-  )
+  if (!Session.get("username")) {//if user does not login
+    alert("You are not loggin!"); 
+    return(<Navigate to='/Login'/>);
+  }else{
+    return (
+      <div>
+        <ProfilePage />
+      </div>
+      );
+  }
 }
 
 export default Profile;
