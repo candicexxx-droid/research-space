@@ -15,8 +15,6 @@ import {
 } from "./components";
 
 let databaseurl = 'http://www.zyoung.tech/drivers/get-json.php?action=post';
-//Session.set("username","");
-//Session.set("passwd","");
 
 
 
@@ -162,7 +160,6 @@ class PostHolder extends React.Component {
 
     render(){
         this.getSQLdata();
-        //console.log(Session.get('username'));
         const post = this.state.titles.map((title,index) => (
                 <Post
                     title={title} 
@@ -174,7 +171,6 @@ class PostHolder extends React.Component {
                     logedin={this.state.logedin}
                     key={index}
                 />));
-            //Read Session
 
         return (
             <>
@@ -196,11 +192,6 @@ class PostHolder extends React.Component {
 
 }
 
-// function getLoginStatus(){
-//     console.log("from index.js");
-//     console.log("The username is: " + Session.get('username'));
-// }
-// getLoginStatus();
 ReactDOM.render(
     <div>
         <div className="rounter">
