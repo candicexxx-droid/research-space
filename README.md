@@ -2,9 +2,17 @@
 
 ### This project is made by:   <br />
 Haoran Zhi ： S0u1Walker and Haoran-Zhi in contributor <br />
+  UID: 705488365  <br />
+  email: haoran0326@g.ucla.edu <br />
 Candice Cai: candicexxx-droid in contributor  <br />
+  UID: 405369788  <br />
+  email: candicecai26@g.ucla.edu <br />
 Gloria (Yulun) Wu: gloriawuyl in contributor  <br />
-Yang Zhong: ZyoungInc in contributor
+  UID: 505370357 <br />
+  email: gloriawuyl@g.ucla.edu <br />
+Yang Zhong: ZyoungInc in contributor <br />
+  UID: 605837685  <br />
+  email: yangzh0429@g.ucla.edu <br />
 
 ## Project Description
 Our team creates a welcoming platform, Research Space,  for students and faculties to communicate opportunities of academic research. In our platform, research opportunities from different academic departments (Engineering, Physical Science, Life Science and Medical School, and Life Science and Social Science) can be posted by users. Users can also log into the system to view opportunity posts, save posts that they are interested in to their account, and view posts published by themselves in their profile page. 
