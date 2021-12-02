@@ -1,19 +1,11 @@
 import * as React from "react";
-import { render } from "react-dom";
 import Session  from "react-session-api";
-// import Post from './home'
 import "./profile.css";
 import { Navigate } from "react-router-dom";
 
 
 let databaseurl = 'http://www.zyoung.tech/drivers/get-json.php?action=post'; //fetch all profile data 
-// let testtitles = Array(10).fill('test');
-// let testcontent = Array(10).fill('test\ntesttesttest hi\neggert is dumb hihihihih');
-// let testdate = Array(10).fill('2021-11-25 05:16:08');
 let savedPostId="";//for testing
-// Session.set("username", "admin");
-// Session.set("password", "admin");
-
 class UserPost extends React.Component {
   //how to render a single post
   render(){
@@ -79,10 +71,7 @@ class UserPostHolder extends React.Component {
 
   getSavedPost() {
 
-    // let userData = 'http://www.zyoung.tech/drivers/get-json.php?action=login&uname=admin&passwd=admin';
     let userData = 'http://www.zyoung.tech/drivers/get-json.php?action=login&uname='+Session.get("username")+"&passwd="+Session.get("passwd");
-    console.log("userData")
-    console.log(userData)
     
 //fetch savedPostId 
     fetch(userData)
@@ -92,7 +81,6 @@ class UserPostHolder extends React.Component {
     
     savedPostId=jsonData.data[0].value1;
     savedPostId=savedPostId.split(",");
-    console.log(savedPostId)
     fetch(databaseurl)
       .then(response => response.json())
       .then((jsonData) => {
@@ -131,7 +119,7 @@ class UserPostHolder extends React.Component {
 
   render(){
 
-      if (this.props.property=="userPost") {
+      if (this.props.property==="userPost") {
         this.getPostData(); 
       } else {
         this.getSavedPost();
@@ -172,18 +160,12 @@ class ProfilePage extends React.Component {
       <div >
       <h1>Profile Page</h1>
       <div className='containAll'>
-      {/* <SplitPane className="list" defaultSize={500} primary="first"> */}
       <div id="row1">
       <YourPosts />
         
         <SavedPosts />
 
       </div>
-      
-     
-      
-      
-    {/* </SplitPane> */}
       </div>
       
     </div>

@@ -6,4 +6,3 @@ export { default as Profile } from "./profile";
 export { default as LikeButton } from "./LikeButton";
 export { default as Filter } from "./Filter"
 export { default as Register } from "./Register"
-// export { default as Post } from "./home";

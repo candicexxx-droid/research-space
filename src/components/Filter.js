@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import makeAnimated from "react-select/animated";
 import { colourOptions } from "./data.js";
 import MySelect from "./MySelect.js";

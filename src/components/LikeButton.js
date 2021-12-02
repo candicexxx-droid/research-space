@@ -41,16 +41,16 @@ function LikeButton(props) {
                 }else if(!jsonData.data[0].value1.split(',').includes(id)){
                     let curr = jsonData.data[0].value1.split(',');
                     curr.push(id);
-                    var params = new URLSearchParams();
-                    params.append('username',Session.get("username"));
-                    params.append('password',Session.get("passwd"));
-                    params.append('value1', curr);
-                    params.append('value2', 'Saved');
-                    params.append('api_key','eggertisgod');
+                    var param = new URLSearchParams();
+                    param.append('username',Session.get("username"));
+                    param.append('password',Session.get("passwd"));
+                    param.append('value1', curr);
+                    param.append('value2', 'Saved');
+                    param.append('api_key','eggertisgod');
                     axios({
                     method:'post',
                     url:'http://www.zyoung.tech/drivers/add-user.php',
-                    data:params
+                    data:param
                     }).catch(error => {
                         alert(error.message)
                     });

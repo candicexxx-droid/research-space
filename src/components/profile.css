@@ -61,13 +61,17 @@ body{
   .userPostL{
     margin-top: 0%;
   }
-  .UserPost {
+   .UserPost {
     box-shadow: 1px 1px 2rem rgba(0, 0, 0, 0.3);
     background-color: aliceblue;
     margin-left:10%;
     margin-right:10%;
     margin-top: 5%;
-}
+    border-radius: 10px;
+    box-shadow: 1px 1px 2rem rgba(0, 0, 0, 0.3);
+    padding: 5px;
+} 
+
 #row1{
   display:flex;
   flex-direction:row;
@@ -77,7 +81,7 @@ justify-content: space-around;
     display:flex;
     flex-direction:column;
     width: 80%;
-    
+    text-align: center;
   }
 
   .userPostTitle {
@@ -105,9 +109,3 @@ justify-content: space-around;
     font-weight: bold;
     color: #333;
 }
-
-/* .containAll {
-  height:100%;
-  width:80%; 
-  overflow-y:auto;
-} */

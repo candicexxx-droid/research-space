@@ -16,9 +16,6 @@ import {
 
 let databaseurl = 'http://www.zyoung.tech/drivers/get-json.php?action=post';
 
-
-
-
 function Post(props){
 
     const [isActive, setActive] = useState("false");
