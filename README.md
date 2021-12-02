@@ -1,6 +1,24 @@
-# Getting Started with Create React App
+# Getting Started Research-Space Web App
+
+This project is made by:
+Haoran Zhi ： S0u1Walker and Haoran-Zhi in contributer
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+first you will need to install node on your device, if you don't have node install goto [Node.js](https://nodejs.org/en/download/) and install the Recommended version.
+
+## Run the App Locally
+
+### After cloned this repository, do 
+`cd research-sapce`
+
+### Install package to be used
+**Note: if you already have those packages installed then you can ignore this step**
+`npm install ...`
+
+### Start the App, run script:
+
+`npm start` to run the app on [http://localhost:3000](http://localhost:3000).
 
 ## Available Scripts
 
