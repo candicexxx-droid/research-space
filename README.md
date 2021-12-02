@@ -14,7 +14,18 @@ first you will need to install node on your device, if you don't have node insta
 
 ### Install package to be used
 **Note: if you already have those packages installed then you can ignore this step**
-`npm install ...`
+````
+```
+npm install axios
+npm install classnames 
+npm install --save prop-types 
+npm install react-session-api
+npm install react-select
+npm install react-bootstrap
+npm install react-router-dom
+npm install sass
+```
+````
 
 ### Start the App, run script:
 
