@@ -1,13 +1,21 @@
 # Getting Started Research-Space Web App
 
-This project is made by:
-Haoran Zhi ： S0u1Walker and Haoran-Zhi in contributer
+### This project is made by:   <br />
+Haoran Zhi ： S0u1Walker and Haoran-Zhi in contributor <br />
+Candice Cai: candicexxx-droid in contributor  <br />
+Gloria (Yulun) Wu: gloriawuyl in contributor  <br />
+Yang Zhong: ZyoungInc in contributor
+
+## Project Description
+Our team creates a welcoming platform, Research Space,  for students and faculties to communicate opportunities of academic research. In our platform, research opportunities from different academic departments (Engineering, Physical Science, Life Science and Medical School, and Life Science and Social Science) can be posted by users. Users can also log into the system to view opportunity posts, save posts that they are interested in to their account, and view posts published by themselves in their profile page. 
 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-first you will need to install node on your device, if you don't have node install goto [Node.js](https://nodejs.org/en/download/) and install the Recommended version.
+
+
 
 ## Run the App Locally
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+first you will need to install node on your device, if you don't have node install goto [Node.js](https://nodejs.org/en/download/) and install the Recommended version.
 
 ### After cloned this repository, do 
 `cd research-sapce`
@@ -68,32 +76,3 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
