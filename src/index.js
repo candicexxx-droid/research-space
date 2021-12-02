@@ -206,7 +206,9 @@ ReactDOM.render(
   </Router>
   </div>
     
-  
+  <footer className="footer">
+        &copy; 🍳  Gloria Wu, Haoran Zhi, Candice Cai, Yang Zhong, 2021
+  </footer>
     
   </div>
     ,
